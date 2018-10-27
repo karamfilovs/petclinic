@@ -1,5 +1,6 @@
 package pages;
 
+import enums.Type;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,8 +22,16 @@ public class AddPetPage extends BasePage {
     @FindBy(how = How.ID, using = "firstName")
     private WebElement firstNameField;
 
+    @FindBy(how = How.ID, using = "type")
+    private WebElement typeDropdown;
+
     public AddPetPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+    }
+
+    public void selectType(Type animalType){
+        LOGGER.info("Selecting animal type:" + animalType);
+        selectDropDownOptionByVisibleText(typeDropdown, animalType.getType());
     }
 }

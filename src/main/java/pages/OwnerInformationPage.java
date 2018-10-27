@@ -15,6 +15,9 @@ public class OwnerInformationPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//h2")
     private WebElement headerText;
 
+    @FindBy(how = How.XPATH, using = "//a[@class='btn btn-success']")
+    private WebElement addPetButton;
+
     public OwnerInformationPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
