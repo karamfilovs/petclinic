@@ -38,7 +38,7 @@ public class FindOwnersPage extends BasePage {
      * Navigates to current page
      */
     public void gotoPage() {
-        LOGGER.info("Navigate to:" + BASE_URL + PAGE_URL);
+        LOGGER.info("Navigate to: " + BASE_URL + PAGE_URL);
         navigateTo(PAGE_URL);
     }
 

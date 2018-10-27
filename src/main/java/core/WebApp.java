@@ -1,3 +1,5 @@
+package core;
+
 import components.Components;
 import org.apache.commons.lang3.SystemUtils;
 import org.openqa.selenium.WebDriver;
