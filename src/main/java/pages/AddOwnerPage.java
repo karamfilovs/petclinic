@@ -13,17 +13,21 @@ public class AddOwnerPage extends BasePage {
     private static final Logger LOGGER = LoggerFactory.getLogger(AddOwnerPage.class);
     private static final String PAGE_URL = "/petclinic/owners/new";
 
-    @FindBy(how = How.XPATH, using = "//h2")
-    private WebElement headerText;
-
     @FindBy(how = How.XPATH, using = "//div[@class='form-actions']//button")
     private WebElement addOwnerButton;
 
     @FindBy(how = How.ID, using = "firstName")
     private WebElement firstNameField;
 
+    @FindBy(how = How.XPATH, using = "//input[@id='firstName']//following-sibling::span")
+    private WebElement firstNameErrorMessage;
+
+
     @FindBy(how = How.ID, using = "lastName")
     private WebElement lastNameField;
+
+    @FindBy(how = How.XPATH, using = "//input[@id='lastName']//following-sibling::span")
+    private WebElement lastNameErrorMessage;
 
     @FindBy(how = How.ID, using = "address")
     private WebElement addressField;
@@ -34,20 +38,13 @@ public class AddOwnerPage extends BasePage {
     @FindBy(how = How.ID, using = "telephone")
     private WebElement telephoneField;
 
+    @FindBy(how = How.XPATH, using = "//input[@id='telephone']//following-sibling::span")
+    private WebElement telephoneErrorMessage;
+
     public AddOwnerPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
-    /**
-     * Verifies h2 text
-     *
-     * @param expectedText page header text
-     */
-    public void verifyHeaderText(String expectedText) {
-        LOGGER.info("Verifying h2 text is:" + expectedText);
-        Assertions.assertEquals(expectedText, getText(headerText), "Header text is not as expected");
-    }
 
     public void enterFirstName(String firstName){
         LOGGER.info("Entering first name:" + firstName);
@@ -77,5 +74,20 @@ public class AddOwnerPage extends BasePage {
     public void clickAddOwnerButton(){
         LOGGER.info("Clicking Add Owner button");
         click(addOwnerButton);
+    }
+
+    public void verifyFirstNameError(String expectedText){
+        LOGGER.info("Verifying first name error:" + expectedText);
+        Assertions.assertEquals(expectedText, getText(firstNameErrorMessage), "Error text is not as expected");
+    }
+
+    public void verifyLastNameError(String expectedText){
+        LOGGER.info("Verifying last name error:" + expectedText);
+        Assertions.assertEquals(expectedText, getText(lastNameErrorMessage), "Error text is not as expected");
+    }
+
+    public void verifyTelephoneError(String expectedText){
+        LOGGER.info("Verifying telephone error:" + expectedText);
+        Assertions.assertEquals(expectedText, getText(telephoneErrorMessage), "Error text is not as expected");
     }
 }

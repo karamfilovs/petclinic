@@ -10,7 +10,7 @@ public class OwnersPageTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("PC-01: Can go to owners page")
+    @DisplayName("PC-16: Can go to owners page")
     public void canGoToOwnersPage() {
         webApp.components().mainMenu().clickFindOwnersLink();
         webApp.findOwnersPage().enterLastName("");

@@ -13,8 +13,9 @@ public class OwnersPage extends BasePage {
     private static final Logger LOGGER = LoggerFactory.getLogger(OwnersPage.class);
     private static final String PAGE_URL = "/petclinic/owners";
 
-    @FindBy(how = How.XPATH, using = "//h2")
-    private WebElement headerText;
+
+    @FindBy(how = How.XPATH, using = "//table[@id='owners']//tr[2]//td[1]/a")
+    private WebElement ownerName;
 
     @FindBy(how = How.XPATH, using = "//a[@class='btn']")
     private WebElement pdfButton;
@@ -27,17 +28,8 @@ public class OwnersPage extends BasePage {
 
     public OwnersPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
-    /**
-     * Verifies h2 text
-     *
-     * @param expectedText page header text
-     */
-    public void verifyHeaderText(String expectedText) {
-        Assertions.assertEquals(expectedText, getText(headerText), "Header text is not as expected");
-    }
 
     /**
      *
@@ -62,5 +54,13 @@ public class OwnersPage extends BasePage {
      */
     public void verifyTableTotalRows(int expectedRowCount){
         Assertions.assertEquals(expectedRowCount, getTableRows(ownersTable).size() - 1, "Expected rows count does not match");
+    }
+
+    /**
+     * Clicks on owner name inside table
+     */
+    public void clickOwnerName(){
+        LOGGER.info("Clicking on random owner name");
+        click(ownerName);
     }
 }

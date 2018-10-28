@@ -12,14 +12,14 @@ public class FindOwnersPageTest extends BaseTest {
 
 
     @Test
-    @DisplayName("PC-02: Can go to find owners page")
+    @DisplayName("PC-12: Can go to find owners page")
     public void canGoToFindOwnersPage() {
         webApp.components().mainMenu().clickFindOwnersLink();
         webApp.homePage().verifyHeaderText("Find Owners");
     }
 
     @Test
-    @DisplayName("PC-02: Can search for not existing owners")
+    @DisplayName("PC-13: Can search for not existing owners")
     public void canSearchForNotExistingOwners() {
         webApp.components().mainMenu().clickFindOwnersLink();
         webApp.findOwnersPage().enterLastName("helen");
@@ -28,7 +28,7 @@ public class FindOwnersPageTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("PC-03: Can search for existing owners")
+    @DisplayName("PC-14: Can search for existing owners")
     public void canSearchForExistingOwners() {
         webApp.components().mainMenu().clickFindOwnersLink();
         webApp.findOwnersPage().enterLastName("Davis");

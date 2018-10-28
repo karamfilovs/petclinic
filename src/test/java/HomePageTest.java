@@ -10,7 +10,7 @@ public class HomePageTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("PC-01: Can go to home page")
+    @DisplayName("PC-15: Can go to home page")
     public void canGoToHomePage() {
        webApp.homePage().verifyHeaderText("Welcome");
     }

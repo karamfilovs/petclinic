@@ -30,7 +30,7 @@ public class MainMenu extends BasePage {
     }
 
     /**
-     * Navigate to Find Owners page
+     * Clicks on Find Owners link  from main menu
      */
     public void clickFindOwnersLink() {
         LOGGER.info("Clicking on Find Owners link from main menu");
@@ -39,7 +39,7 @@ public class MainMenu extends BasePage {
     }
 
     /**
-     * Navigate to Veterinarians page
+     * Clicks on Veterinarians link
      */
     public void clickVeterinariansLink() {
         LOGGER.info("Clicking on Veterinarians link from main menu");
@@ -48,12 +48,23 @@ public class MainMenu extends BasePage {
     }
 
     /**
-     * Navigate to Home page
+     * Clicks on Home link
      */
     public void clickHomeLink() {
         LOGGER.info("Clicking on Home page link main menu");
         click(homePageLink);
         waitForFullPageOrJsAjaxToLoad();
     }
+
+    /**
+     * Clicks on Error link from main menu
+     */
+    public void clickErrorLink(){
+        LOGGER.info("Clicking on Error page link main menu");
+        click(errorLink);
+        waitForFullPageOrJsAjaxToLoad();
+    }
+
+
 
 }

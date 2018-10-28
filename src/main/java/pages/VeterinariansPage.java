@@ -15,15 +15,11 @@ public class VeterinariansPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//div[@id='vets_filter']//input")
     private WebElement searchField;
 
-    @FindBy(how = How.XPATH, using = "//h2")
-    private WebElement headerText;
-
     @FindBy(how = How.ID, using = "vets")
     private WebElement vetsTable;
 
     public VeterinariansPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
 
@@ -35,16 +31,6 @@ public class VeterinariansPage extends BasePage {
     public void search(String text) {
         LOGGER.info("Searching for veterinarians by:" + text);
         typeText(searchField, text);
-    }
-
-    /**
-     * Verifies h2 text
-     *
-     * @param expectedText page header text
-     */
-    public void verifyHeaderText(String expectedText) {
-        LOGGER.info("Verifying h2 text is:" + expectedText);
-        Assertions.assertEquals(expectedText, getText(headerText), "Header text is not as expected");
     }
 
     /**

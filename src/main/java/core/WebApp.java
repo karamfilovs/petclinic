@@ -1,7 +1,10 @@
 package core;
 
 import components.Components;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.SystemUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -11,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pages.*;
 
+import java.io.File;
+import java.time.LocalTime;
 import java.util.concurrent.TimeUnit;
 
 public class WebApp {
@@ -32,6 +37,7 @@ public class WebApp {
     private AddOwnerPage addOwnerPage;
     private OwnerInformationPage ownerInformationPage;
     private AddPetPage addPetPage;
+    private ErrorPage errorPage;
 
 
     public void startBrowser(String browser) {
@@ -109,6 +115,15 @@ public class WebApp {
         }
     }
 
+    public ErrorPage errorPage() {
+        if (errorPage == null) {
+            errorPage = new ErrorPage(driver);
+            return errorPage;
+        } else {
+            return errorPage;
+        }
+    }
+
     public AddOwnerPage addOwnerPage() {
         if (addOwnerPage == null) {
             addOwnerPage = new AddOwnerPage(driver);
@@ -151,6 +166,33 @@ public class WebApp {
             return components;
         } else {
             return components;
+        }
+    }
+
+
+    /**
+     * Takes screenshot of the current screen
+     *
+     * @param className Name of the class from which it was invoked
+     * @param method    Test method name
+     * @param timestamp Current time stamp
+     */
+    public void takeScreenshot(String className, String method, LocalTime timestamp) {
+        if (driver instanceof TakesScreenshot) {
+            TakesScreenshot screenshotTakingDriver = (TakesScreenshot) driver;
+            try {
+                File localScreenshots = new File(new File("target"), "screenshots");
+                if (!localScreenshots.exists() || !localScreenshots.isDirectory()) {
+                    localScreenshots.mkdirs();
+                }
+                File screenshot = new File(localScreenshots, className + "_" + method + "_" + timestamp.getHour() + "." + timestamp.getMinute() + "." + timestamp.getSecond() + ".png");
+                FileUtils.copyFile(screenshotTakingDriver.getScreenshotAs(OutputType.FILE), screenshot);
+                LOGGER.info("Screenshot for class={} method={} saved in: {}", className, method, screenshot.getAbsolutePath());
+            } catch (Exception e1) {
+                LOGGER.error("Unable to take screenshot", e1);
+            }
+        } else {
+            LOGGER.info("Driver '{}' can't take screenshots so skipping it.", driver.getClass());
         }
     }
 

@@ -13,13 +13,9 @@ public class HomePage extends BasePage {
     private static final Logger LOGGER = LoggerFactory.getLogger(HomePage.class);
     private static final String PAGE_URL = "/petclinic";
 
-    @FindBy(how = How.XPATH, using = "//h2")
-    private WebElement headerText;
-
 
     public HomePage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
     /**
@@ -31,7 +27,4 @@ public class HomePage extends BasePage {
     }
 
 
-    public void verifyHeaderText(String expectedText) {
-        Assertions.assertEquals(expectedText, getText(headerText), "Header text is not as expected");
-    }
 }

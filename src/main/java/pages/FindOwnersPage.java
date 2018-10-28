@@ -22,15 +22,11 @@ public class FindOwnersPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//div[@class='form-actions']/button")
     private WebElement findOwnerButton;
 
-    @FindBy(how = How.XPATH, using = "//h2")
-    private WebElement headerText;
-
     @FindBy(how = How.ID, using = "owner.errors")
     private WebElement errorMessage;
 
     public FindOwnersPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
 
@@ -60,14 +56,6 @@ public class FindOwnersPage extends BasePage {
         click(findOwnerButton);
     }
 
-    /**
-     * Verifies h2 text
-     *
-     * @param expectedText page header text
-     */
-    public void verifyHeaderText(String expectedText) {
-        Assertions.assertEquals(expectedText, getText(headerText), "Header text is not as expected");
-    }
 
     /**
      * Verifies search error message text

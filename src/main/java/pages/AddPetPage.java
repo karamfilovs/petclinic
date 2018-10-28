@@ -1,6 +1,7 @@
 package pages;
 
 import enums.Type;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,17 +15,20 @@ public class AddPetPage extends BasePage {
     private static final Logger LOGGER = LoggerFactory.getLogger(AddPetPage.class);
     private static final String PAGE_URL = "/petclinic/owners/new";
 
-    @FindBy(how = How.XPATH, using = "//h2")
-    private WebElement headerText;
-
     @FindBy(how = How.XPATH, using = "//div[@class='form-actions']//button")
     private WebElement addPetButton;
 
     @FindBy(how = How.ID, using = "name")
     private WebElement nameField;
 
+    @FindBy(how = How.XPATH, using = "//input[@id='name']/following-sibling::span")
+    private WebElement nameFieldError;
+
     @FindBy(how = How.ID, using = "birthDate")
     private WebElement birthDateField;
+
+    @FindBy(how = How.XPATH, using = "//input[@id='birthDate']/following-sibling::span")
+    private WebElement birthDateFieldError;
 
     @FindBy(how = How.XPATH, using = "//table[@class='ui-datepicker-calendar']")
     private WebElement datePickerCalendar;
@@ -33,9 +37,11 @@ public class AddPetPage extends BasePage {
     @FindBy(how = How.ID, using = "type")
     private WebElement typeDropdown;
 
+    @FindBy(how = How.XPATH, using = "//select[@id='type']/following-sibling::span")
+    private WebElement typeDropdownError;
+
     public AddPetPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
     public void selectType(Type animalType){
@@ -77,5 +83,21 @@ public class AddPetPage extends BasePage {
         selectDateFromCalendar(day);
         selectType(type);
         clickAddPetButton();
+    }
+
+
+    public void verifyNameError(String expectedText){
+        LOGGER.info("Verifying name error:" + expectedText);
+        Assertions.assertEquals(expectedText, getText(nameFieldError), "Error text is not as expected");
+    }
+
+    public void verifyTypeError(String expectedText){
+        LOGGER.info("Verifying type error:" + expectedText);
+        Assertions.assertEquals(expectedText, getText(typeDropdownError), "Error text is not as expected");
+    }
+
+    public void verifyBirthDateError(String expectedText){
+        LOGGER.info("Verifying birth date error:" + expectedText);
+        Assertions.assertEquals(expectedText, getText(birthDateFieldError), "Error text is not as expected");
     }
 }

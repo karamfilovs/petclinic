@@ -10,14 +10,14 @@ public class VeterinariansPageTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("PC-05: Can go to veterinarians page")
+    @DisplayName("PC-17: Can go to veterinarians page")
     public void canGoToVeterinariansPage() {
         webApp.components().mainMenu().clickVeterinariansLink();
         webApp.veterinariansPage().verifyHeaderText("Veterinarians");
     }
 
     @Test
-    @DisplayName("PC-05: Can search for existing veterinarians")
+    @DisplayName("PC-18: Can search for existing veterinarians")
     public void canSearchForExistingVeterinarians() {
         webApp.components().mainMenu().clickVeterinariansLink();
         webApp.veterinariansPage().search("Helen");
@@ -26,7 +26,7 @@ public class VeterinariansPageTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("PC-06: Can search for not existing veterinarians")
+    @DisplayName("PC-19: Can search for not existing veterinarians")
     public void canSearchForNotExistingVeterinarians() {
         webApp.components().mainMenu().clickVeterinariansLink();
         webApp.veterinariansPage().search("Helenaaaa");

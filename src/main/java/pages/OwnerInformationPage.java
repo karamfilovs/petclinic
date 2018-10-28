@@ -12,9 +12,6 @@ import org.slf4j.LoggerFactory;
 public class OwnerInformationPage extends BasePage {
     private static final Logger LOGGER = LoggerFactory.getLogger(OwnerInformationPage.class);
 
-    @FindBy(how = How.XPATH, using = "//h2")
-    private WebElement headerText;
-
     @FindBy(how = How.XPATH, using = "//h2[2]")
     private WebElement secondHeader;
 
@@ -26,18 +23,8 @@ public class OwnerInformationPage extends BasePage {
 
     public OwnerInformationPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
-    /**
-     * Verifies h2 text
-     *
-     * @param expectedText page header text
-     */
-    public void verifyHeaderText(String expectedText) {
-        LOGGER.info("Verifying h2 text is:" + expectedText);
-        Assertions.assertEquals(expectedText, getText(headerText), "Header text is not as expected");
-    }
 
     /**
      * Verifies second h2 text

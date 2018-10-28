@@ -3,9 +3,12 @@ package pages;
 import enums.Checked;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.Validate;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -30,12 +33,25 @@ public class BasePage {
 
     protected WebDriver driver;
 
+    @FindBy(how = How.XPATH, using = "//h2")
+    private WebElement headerText;
+
 
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
+    /**
+     * Verifies h2 text
+     *
+     * @param expectedText page header text
+     */
+    public void verifyHeaderText(String expectedText) {
+        LOGGER.info("Verifying h2 text is:" + expectedText);
+        Assertions.assertEquals(expectedText, getText(headerText), "Header text is not as expected");
+    }
 
 
 
@@ -339,5 +355,6 @@ public class BasePage {
         //This will scroll the page till the element is found
         js.executeScript("arguments[0].scrollIntoView();", element);
     }
+
 
 }
