@@ -15,8 +15,14 @@ public class OwnerInformationPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//h2")
     private WebElement headerText;
 
+    @FindBy(how = How.XPATH, using = "//h2[2]")
+    private WebElement secondHeader;
+
     @FindBy(how = How.XPATH, using = "//a[@class='btn btn-success']")
     private WebElement addPetButton;
+
+    @FindBy(how = How.XPATH, using = "//a[@class='btn btn-info']")
+    private WebElement editOwnerButton;
 
     public OwnerInformationPage(WebDriver driver) {
         super(driver);
@@ -31,5 +37,32 @@ public class OwnerInformationPage extends BasePage {
     public void verifyHeaderText(String expectedText) {
         LOGGER.info("Verifying h2 text is:" + expectedText);
         Assertions.assertEquals(expectedText, getText(headerText), "Header text is not as expected");
+    }
+
+    /**
+     * Verifies second h2 text
+     *
+     * @param expectedText page header text
+     */
+    public void verifySecondHeaderText(String expectedText) {
+        LOGGER.info("Verifying second h2 text is:" + expectedText);
+        Assertions.assertEquals(expectedText, getText(secondHeader), "Header text is not as expected");
+    }
+
+
+    /**
+     * Clicks Edit Owner button
+     */
+    public void clickEditOwnerButton(){
+        LOGGER.info("Clicking Edit Owner button");
+        click(editOwnerButton);
+    }
+
+    /**
+     * Clicks Add Pet button
+     */
+    public void clickAddPetButton(){
+        LOGGER.info("Clicking Add Pet button");
+        click(addPetButton);
     }
 }

@@ -31,6 +31,7 @@ public class WebApp {
     private VeterinariansPage veterinariansPage;
     private AddOwnerPage addOwnerPage;
     private OwnerInformationPage ownerInformationPage;
+    private AddPetPage addPetPage;
 
 
     public void startBrowser(String browser) {
@@ -114,6 +115,15 @@ public class WebApp {
             return addOwnerPage;
         } else {
             return addOwnerPage;
+        }
+    }
+
+    public AddPetPage addPetPage() {
+        if (addPetPage == null) {
+            addPetPage = new AddPetPage(driver);
+            return addPetPage;
+        } else {
+            return addPetPage;
         }
     }
 
