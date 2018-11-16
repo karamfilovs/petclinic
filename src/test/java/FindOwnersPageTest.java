@@ -1,6 +1,7 @@
 import core.BaseTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class FindOwnersPageTest extends BaseTest {
@@ -19,6 +20,7 @@ public class FindOwnersPageTest extends BaseTest {
     }
 
     @Test
+    @Tag("only")
     @DisplayName("PC-13: Can search for not existing owners")
     public void canSearchForNotExistingOwners() {
         webApp.components().mainMenu().clickFindOwnersLink();
