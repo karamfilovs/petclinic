@@ -20,7 +20,7 @@ public class OwnersPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//a[@class='btn']")
     private WebElement pdfButton;
 
-    @FindBy(how = How.ID, using = "//input")
+    @FindBy(how = How.XPATH, using = "//input")
     private WebElement searchField;
 
     @FindBy(how = How.ID, using = "owners")
