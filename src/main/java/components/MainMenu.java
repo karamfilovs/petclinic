@@ -24,6 +24,7 @@ public class MainMenu extends BasePage {
     @FindBy(how = How.XPATH, using = "//ul[@class='nav']//li[4]")
     private WebElement errorLink;
 
+
     public MainMenu(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
