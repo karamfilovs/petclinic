@@ -43,7 +43,7 @@ public class VeterinariansPageTest extends BaseTest {
 
     @Test
     @DisplayName("PC-21: Can search for not existing veterinarian specialty")
-    public void canSearchForNotExistingVeterinarianSpeialty() {
+    public void canSearchForNotExistingVeterinarianSpecialty() {
         webApp.components().mainMenu().clickVeterinariansLink();
         webApp.veterinariansPage().search("cardiology");
         webApp.veterinariansPage().verifyTableTextContains("No matching records found");
