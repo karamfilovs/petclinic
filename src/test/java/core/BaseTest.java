@@ -18,5 +18,15 @@ public class BaseTest {
         webApp.startBrowser(System.getProperty("browser"));
     }
 
-
+    @AfterEach
+    public void tearDown(ExtensionContext extensionContext) {
+        if (System.getProperty("take.screenshots.enabled").equalsIgnoreCase("true")) {
+            Method testMethod = extensionContext.getRequiredTestMethod();
+            Boolean testFailed = extensionContext.getExecutionException().isPresent();
+            if (testFailed) {
+                webApp.takeScreenshot(testMethod.getDeclaringClass().getSimpleName(), testMethod.getName(), LocalTime.now());
+            }
+        }
+        webApp.quit();
+    }
 }
