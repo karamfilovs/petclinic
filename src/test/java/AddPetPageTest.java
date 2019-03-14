@@ -38,13 +38,6 @@ public class AddPetPageTest extends BaseTest {
         webApp.addPetPage().verifyBirthDateError("is required");
     }
 
-    @Test
-    @Tag("negative")
-    @DisplayName("PC-11: Cant add pet with blank type")
-    public void cantAddPetWithBlankType() {
-        webApp.addPetPage().enterName("Sarah");
-        webApp.addPetPage().selectDateFromCalendar("10");
-        webApp.addPetPage().clickAddPetButton();
-        webApp.addPetPage().verifyTypeError("is required");
-    }
 }
+
+
