@@ -117,7 +117,7 @@ public class AddOwnerPageTest extends BaseTest {
         webApp.ownerInformationPage().verifySecondHeaderText("Pets and Visits");
     }
     @Test
-    @DisplayName("PC-24: Can add owner with special characters and numbers mixed in all fields without telephone")
+    @DisplayName("PC-24: Cant add owner with special characters and numbers mixed in all fields without telephone")
     public void canAddOwnerWithSpecialCharactersAndNumbersMixedInAllFieldsWithoutTelephone() {
         webApp.components().mainMenu().clickFindOwnersLink();
         webApp.findOwnersPage().clickAddOwnerLink();
@@ -127,7 +127,11 @@ public class AddOwnerPageTest extends BaseTest {
         webApp.addOwnerPage().enterCity("*![]<yooohoho>{}123/\\\n");
         webApp.addOwnerPage().enterTelephone("0000");
         webApp.addOwnerPage().clickAddOwnerButton();
-        webApp.ownerInformationPage().verifyHeaderText("Owner Information");
+        webApp.addOwnerPage().verifyFirstNameWithMixedCharsError("Error text invalid data please enter string text for First Name field!!!");
+        webApp.addOwnerPage().verifyLastNameWithMixedCharsError("Error text invalid data please enter string text for Last Name field!!!");
+        webApp.addOwnerPage().verifyAddressWithMixedCharsError("Error text invalid data please enter string text and numbers for Address field!!!");
+        webApp.addOwnerPage().verifyCityNameWithMixedCharsError("Error text invalid data please enter string text for City field!!!");
+        webApp.addOwnerPage().verifyTelephoneSeveralNumbersError("Error in invalid size number enter 10 digits field!!!");
     }
     @Test
     @DisplayName("PC-25: Can add owner and an animal with special characters and numbers mixed in all fields without telephone")
