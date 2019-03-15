@@ -116,4 +116,37 @@ public class AddOwnerPageTest extends BaseTest {
         webApp.addPetPage().addNewPet("Sarah", "10", Type.DOG);
         webApp.ownerInformationPage().verifySecondHeaderText("Pets and Visits");
     }
+    @Test
+    @DisplayName("PC-24: Cant add owner with special characters and numbers mixed in all fields without telephone")
+    public void canAddOwnerWithSpecialCharactersAndNumbersMixedInAllFieldsWithoutTelephone() {
+        webApp.components().mainMenu().clickFindOwnersLink();
+        webApp.findOwnersPage().clickAddOwnerLink();
+        webApp.addOwnerPage().enterFirstName("@nton098");
+        webApp.addOwnerPage().enterLastName("$hehov123");
+        webApp.addOwnerPage().enterAddress("123#^&ABV\n");
+        webApp.addOwnerPage().enterCity("*![]<yooohoho>{}123/\\\n");
+        webApp.addOwnerPage().enterTelephone("0000");
+        webApp.addOwnerPage().clickAddOwnerButton();
+        webApp.addOwnerPage().verifyFirstNameWithMixedCharsError("Error text invalid data please enter string text for First Name field!!!");
+        webApp.addOwnerPage().verifyLastNameWithMixedCharsError("Error text invalid data please enter string text for Last Name field!!!");
+        webApp.addOwnerPage().verifyAddressWithMixedCharsError("Error text invalid data please enter string text and numbers for Address field!!!");
+        webApp.addOwnerPage().verifyCityNameWithMixedCharsError("Error text invalid data please enter string text for City field!!!");
+        webApp.addOwnerPage().verifyTelephoneSeveralNumbersError("Error in invalid size number enter 10 digits field!!!");
+    }
+    @Test
+    @DisplayName("PC-25: Can add owner and an animal with special characters and numbers mixed in all fields without telephone")
+    public void canAddOwnerAndAnAnimalWithSpecialCharactersAndNumbersMixedInAllFieldsWithoutTelephone() {
+        webApp.components().mainMenu().clickFindOwnersLink();
+        webApp.findOwnersPage().clickAddOwnerLink();
+        webApp.addOwnerPage().enterFirstName("@ntoniq123#");
+        webApp.addOwnerPage().enterLastName("Dr@g0v@666");
+        webApp.addOwnerPage().enterAddress("0ut 0F $pace #{2020}");
+        webApp.addOwnerPage().enterCity("S0fiy!2019");
+        webApp.addOwnerPage().enterTelephone("000000000000");
+        webApp.addOwnerPage().clickAddOwnerButton();
+        webApp.ownerInformationPage().verifyHeaderText("Owner Information");
+        webApp.ownerInformationPage().clickAddPetButton();
+        webApp.addPetPage().addNewPet("Dr@gonF#y99", "3", Type.LIZARD);
+        webApp.ownerInformationPage().verifySecondHeaderText("Pets and Visits");
+    }
 }
