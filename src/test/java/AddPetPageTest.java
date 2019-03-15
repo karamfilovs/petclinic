@@ -47,4 +47,6 @@ public class AddPetPageTest extends BaseTest {
         webApp.addPetPage().clickAddPetButton();
         webApp.addPetPage().verifyTypeError("is required");
     }
+
+
 }
