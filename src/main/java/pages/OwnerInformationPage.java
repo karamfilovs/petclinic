@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,10 +20,16 @@ public class OwnerInformationPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//a[@class='btn btn-info']")
     private WebElement editOwnerButton;
 
+    @FindBy(how=How.XPATH, using = "/html/body/div/table[2]/tbody/tr/td[1]/dl/dd[1]")
+    public static WebElement verifyEditedPet;
+
+    @FindBy(how = How.XPATH, using = "/html/body/div/table[2]/tbody/tr/td[2]/table/tbody/tr/td[1]/a")
+    public static WebElement editPetLink;
+
+
     public OwnerInformationPage(WebDriver driver) {
         super(driver);
     }
-
 
     /**
      * Verifies second h2 text
@@ -51,5 +56,11 @@ public class OwnerInformationPage extends BasePage {
     public void clickAddPetButton(){
         LOGGER.info("Clicking Add Pet button");
         click(addPetButton);
+    }
+
+
+    public void  clickEditPet(){
+        LOGGER.info("Open the pet edid page");
+        click(editPetLink);
     }
 }
