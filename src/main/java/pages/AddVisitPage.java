@@ -14,7 +14,7 @@ public class AddVisitPage extends BasePage {
     private static final Logger LOGGER = LoggerFactory.getLogger(AddPetPage.class);
     private static final String PAGE_URL = "/petclinic/owners/visit/new";
 
-    @FindBy(how = How.XPATH, using = "/html/body/div/table[2]/tbody/tr/td[2]/table/tbody/tr/td[2]/a" )
+    @FindBy(how = How.XPATH, using = "//table[@class='table-condensed']//tbody/tr/td[2]/a" )
     private WebElement addVisitLink;
 
     @FindBy(how = How.XPATH, using = "//input[@id='date']" )
@@ -26,10 +26,10 @@ public class AddVisitPage extends BasePage {
     @FindBy(how = How.CSS, using = "div.form-actions button" )
     private WebElement addVisitButton;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div[1]/table[1]/thead/tr/th[1]" )
+    @FindBy(how = How.XPATH, using = "//table[@class='table table-striped']//tr//th[1]" )
     private WebElement randomElement;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div/table[2]/tbody/tr/td[2]/table/tbody/tr[1]/td[1]" )
+    @FindBy(how = How.XPATH, using = "//table[@class='table-condensed']//tbody/tr" )
     private WebElement visibleDate;
 
 

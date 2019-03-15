@@ -15,7 +15,7 @@ public class AddVisitPageTest extends BaseTest {
 
     @Test
     @DisplayName("PC-28: Can add new visit")
-    public void cantAddNewVisit() {
+    public void canAddNewVisit() {
         webApp.addVisitPage().clickAddVisitLink();
         webApp.addVisitPage().addDate("2019/03/24");
         webApp.addVisitPage().addDescription("Sick, can't sleep");
