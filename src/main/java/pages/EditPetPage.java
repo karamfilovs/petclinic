@@ -32,7 +32,7 @@ public class EditPetPage extends BasePage{
     }
 
     public void verifyPetNamIsChanged(String expectedName, String message){
-        LOGGER.info("Veriying the pet's name is changed to:"+petNameField);
+        LOGGER.info("Verifying the pet's name is changed to: "+petNameField);
         Assertions.assertEquals(OwnerInformationPage.verifyEditedPet.getText(), expectedName, message);
     }
 }

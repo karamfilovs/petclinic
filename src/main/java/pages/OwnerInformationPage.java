@@ -20,10 +20,10 @@ public class OwnerInformationPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//a[@class='btn btn-info']")
     private WebElement editOwnerButton;
 
-    @FindBy(how=How.XPATH, using = "/html/body/div/table[2]/tbody/tr/td[1]/dl/dd[1]")
+    @FindBy(how=How.XPATH, using = "//table[2]/tbody/tr/td[1]/dl/dd[1]")
     public static WebElement verifyEditedPet;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div/table[2]/tbody/tr/td[2]/table/tbody/tr/td[1]/a")
+    @FindBy(how = How.XPATH, using = "//table[2]/tbody/tr/td[2]/table/tbody/tr/td[1]/a")
     public static WebElement editPetLink;
 
 
@@ -60,7 +60,7 @@ public class OwnerInformationPage extends BasePage {
 
 
     public void  clickEditPet(){
-        LOGGER.info("Open the pet edid page");
+        LOGGER.info("Open the pet edit page");
         click(editPetLink);
     }
 }

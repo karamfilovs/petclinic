@@ -3,6 +3,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.TimeoutException;
 
 public class EditPetPageTest extends BaseTest {
 
@@ -10,9 +11,18 @@ public class EditPetPageTest extends BaseTest {
     public void loadPetClinic() {
         webApp.homePage().gotoPage();
         webApp.components().mainMenu().clickFindOwnersLink();
-        webApp.findOwnersPage().enterLastName("Ivanov");
+        webApp.findOwnersPage().enterLastName("Davis");
         webApp.findOwnersPage().clickFindOwnerButton();
-        webApp.ownerInformationPage().clickEditPet();
+
+        try {
+
+            webApp.ownersPage().clickOwnerName();
+            webApp.ownerInformationPage().clickEditPet();
+        }catch (TimeoutException e) {
+
+            System.out.println("There is just one owner with this Last name");
+            webApp.ownerInformationPage().clickEditPet();
+        }
     }
 
     @Test
@@ -22,6 +32,6 @@ public class EditPetPageTest extends BaseTest {
 
         webApp.editPetPage().type("Tosho");
         webApp.editPetPage().clickUpdateButton();
-        webApp.editPetPage().verifyPetNamIsChanged("Tosho", "The pet's name does't changed");
+        webApp.editPetPage().verifyPetNamIsChanged("Tosho", "The pet's name doesn't changed");
     }
 }
