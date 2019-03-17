@@ -34,4 +34,5 @@ public class EditPetPageTest extends BaseTest {
         webApp.editPetPage().clickUpdateButton();
         webApp.editPetPage().verifyPetNamIsChanged("Tosho", "The pet's name doesn't changed");
     }
+
 }
