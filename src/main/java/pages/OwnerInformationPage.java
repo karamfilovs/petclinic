@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -51,5 +52,13 @@ public class OwnerInformationPage extends BasePage {
     public void clickAddPetButton(){
         LOGGER.info("Clicking Add Pet button");
         click(addPetButton);
+    }
+
+    /**
+     * This method checks if the new visit has been added
+     */
+    public void verifyAddedNewVisit() {
+        WebElement newvisit = driver.findElement(By.cssSelector("table.table:nth-of-type(2) table.table-condensed td"));
+        Assertions.assertTrue(newvisit.isDisplayed());
     }
 }
