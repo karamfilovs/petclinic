@@ -66,6 +66,7 @@ public class BasePage {
         waitForElementVisibility(element);
         element.clear();
         element.sendKeys(text);
+        element.sendKeys(Keys.ENTER);
     }
 
     /**
