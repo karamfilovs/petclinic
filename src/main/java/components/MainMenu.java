@@ -60,12 +60,11 @@ public class MainMenu extends BasePage {
     /**
      * Clicks on Error link from main menu
      */
-    public void clickErrorLink(){
+    public void clickErrorLink() {
         LOGGER.info("Clicking on Error page link main menu");
         click(errorLink);
         waitForFullPageOrJsAjaxToLoad();
     }
-
 
 
 }

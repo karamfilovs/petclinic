@@ -60,71 +60,72 @@ public class AddOwnerPage extends BasePage {
     }
 
 
-    public void enterFirstName(String firstName){
+    public void enterFirstName(String firstName) {
         LOGGER.info("Entering first name:" + firstName);
         typeText(firstNameField, firstName);
     }
 
-    public void enterLastName(String lastName){
+    public void enterLastName(String lastName) {
         LOGGER.info("Entering last name:" + lastName);
         typeText(lastNameField, lastName);
     }
 
-    public void enterAddress(String address){
+    public void enterAddress(String address) {
         LOGGER.info("Entering address:" + address);
         typeText(addressField, address);
     }
 
-    public void enterCity(String city){
+    public void enterCity(String city) {
         LOGGER.info("Entering city:" + city);
         typeText(cityField, city);
     }
 
-    public void enterTelephone(String telephone){
+    public void enterTelephone(String telephone) {
         LOGGER.info("Entering telephone:" + telephone);
         typeText(telephoneField, telephone);
     }
 
-    public void clickAddOwnerButton(){
+    public void clickAddOwnerButton() {
         LOGGER.info("Clicking Add Owner button");
         click(addOwnerButton);
     }
 
-    public void verifyFirstNameError(String expectedText){
+    public void verifyFirstNameError(String expectedText) {
         LOGGER.info("Verifying first name error:" + expectedText);
         Assertions.assertEquals(expectedText, getText(firstNameErrorMessage), "Error text is not as expected");
     }
 
-    public void verifyLastNameError(String expectedText){
+    public void verifyLastNameError(String expectedText) {
         LOGGER.info("Verifying last name error:" + expectedText);
         Assertions.assertEquals(expectedText, getText(lastNameErrorMessage), "Error text is not as expected");
     }
 
-    public void verifyTelephoneError(String expectedText){
+    public void verifyTelephoneError(String expectedText) {
         LOGGER.info("Verifying telephone error:" + expectedText);
         Assertions.assertEquals(expectedText, getText(telephoneErrorMessage), "Error text is not as expected");
     }
 
-    public void verifyFirstNameWithMixedCharsError(String expectedText){
+    public void verifyFirstNameWithMixedCharsError(String expectedText) {
         LOGGER.info("Verifying first name error:" + expectedText);
         Assertions.assertEquals(expectedText, getText(firstNameMixedCharsErrorMessage), "Error text is not as expected");
     }
 
-    public void verifyLastNameWithMixedCharsError(String expectedText){
+    public void verifyLastNameWithMixedCharsError(String expectedText) {
         LOGGER.info("Verifying last name error:" + expectedText);
         Assertions.assertEquals(expectedText, getText(lastNameMixedCharsErrorMessage), "Error text is not as expected");
     }
 
-    public void verifyAddressWithMixedCharsError(String expectedText){
+    public void verifyAddressWithMixedCharsError(String expectedText) {
         LOGGER.info("Verifying telephone error:" + expectedText);
         Assertions.assertEquals(expectedText, getText(addressMixedCharsErrorMessage), "Error text is not as expected");
     }
-    public void verifyCityNameWithMixedCharsError(String expectedText){
+
+    public void verifyCityNameWithMixedCharsError(String expectedText) {
         LOGGER.info("Verifying first name error:" + expectedText);
         Assertions.assertEquals(expectedText, getText(cityMixedCharsErrorMessage), "Error text is not as expected");
     }
 
-    public void verifyTelephoneSeveralNumbersError(String expectedText){
+    public void verifyTelephoneSeveralNumbersError(String expectedText) {
         LOGGER.info("Verifying telephone error:" + expectedText);
         Assertions.assertEquals(expectedText, getText(telephoneSeveralNumbersErrorMessage), "Error text is not as expected");
     }

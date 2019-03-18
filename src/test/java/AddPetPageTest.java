@@ -48,11 +48,10 @@ public class AddPetPageTest extends BaseTest {
         webApp.addPetPage().verifyTypeError("is required");
     }
 
-
     @Test
     @Tag("negative")
     @DisplayName("PC-21: Cant add pet with futire bith date")
-    public void cantAddPetWithFutureBirthDate(){
+    public void cantAddPetWithFutureBirthDate() {
         webApp.addPetPage().enterName("Suzana");
         webApp.addPetPage().enterBirthDate("2030/03/14");
         webApp.addPetPage().selectType(Type.BIRD);
@@ -64,7 +63,7 @@ public class AddPetPageTest extends BaseTest {
     @Test
     @Tag("negative")
     @DisplayName("PC-22: Cant add pet with invalid bith date")
-    public void cantAddPetWithInvalidBirthDate(){
+    public void cantAddPetWithInvalidBirthDate() {
         webApp.addPetPage().enterName("Suzanaa");
         webApp.addPetPage().enterBirthDate("2030/03/50");
         webApp.addPetPage().selectType(Type.BIRD);

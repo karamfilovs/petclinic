@@ -37,7 +37,6 @@ public class BasePage {
     private WebElement headerText;
 
 
-
     public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -52,7 +51,6 @@ public class BasePage {
         LOGGER.info("Verifying h2 text is:" + expectedText);
         Assertions.assertEquals(expectedText, getText(headerText), "Header text is not as expected");
     }
-
 
 
     protected void typeTextWithActionsBuilder(WebElement element, String text) {
@@ -221,7 +219,7 @@ public class BasePage {
     /**
      * gets an option from a dropdown based on the visible text
      *
-     * @param dropDown                  the drop down WebElement
+     * @param dropDown the drop down WebElement
      * @return returns selected value as string
      */
     public String getDropDownOption(WebElement dropDown) {
@@ -229,7 +227,6 @@ public class BasePage {
         Select select = new Select(dropDown);
         return getText(select.getFirstSelectedOption());
     }
-
 
 
     public boolean waitForFullPageOrJsAjaxToLoad() {
@@ -322,7 +319,6 @@ public class BasePage {
     }
 
 
-
     protected List<WebElement> getTableRows(WebElement table) {
         Validate.notNull(table, "Table element should not be null");
         List<WebElement> rows = table.findElements(By.tagName("tr"))   // get table rows
@@ -340,7 +336,7 @@ public class BasePage {
     }
 
 
-    protected List<WebElement> getTableCells(WebElement table){
+    protected List<WebElement> getTableCells(WebElement table) {
         List<WebElement> cells = new ArrayList<>();
         getTableRows(table).forEach(row -> cells.addAll(getCells(row)));
         return cells;
@@ -348,6 +344,7 @@ public class BasePage {
 
     /**
      * Scrolling down to element
+     *
      * @param element target element
      */
     protected void scrollDownToElement(WebElement element) {

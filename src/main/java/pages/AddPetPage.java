@@ -44,29 +44,29 @@ public class AddPetPage extends BasePage {
         super(driver);
     }
 
-    public void selectType(Type animalType){
+    public void selectType(Type animalType) {
         LOGGER.info("Selecting animal type:" + animalType);
         selectDropDownOptionByVisibleText(typeDropdown, animalType.getType());
     }
 
-    public void enterName(String name){
+    public void enterName(String name) {
         LOGGER.info("Entering name:" + name);
         typeText(nameField, name);
     }
 
-    public void enterBirthDate(String birthDate){
+    public void enterBirthDate(String birthDate) {
         LOGGER.info("Entering birth date:" + birthDate);
         typeText(birthDateField, birthDate);
         click(birthDateField);
     }
 
-    public void selectDateFromCalendar(String day){
+    public void selectDateFromCalendar(String day) {
         LOGGER.info("Selecting day from the month:" + day);
         click(birthDateField);
         datePickerCalendar.findElement(By.xpath("//a[text()=" + day + "]")).click();
     }
 
-    public void clickAddPetButton(){
+    public void clickAddPetButton() {
         LOGGER.info("Clicking Add Pet button");
         click(addPetButton);
     }
@@ -74,11 +74,12 @@ public class AddPetPage extends BasePage {
 
     /**
      * Adds new pet for specific owner
+     *
      * @param name name
-     * @param day date in format day/month/year
+     * @param day  date in format day/month/year
      * @param type animal type
      */
-    public void addNewPet(String name, String day, Type type){
+    public void addNewPet(String name, String day, Type type) {
         enterName(name);
         selectDateFromCalendar(day);
         selectType(type);
@@ -86,17 +87,17 @@ public class AddPetPage extends BasePage {
     }
 
 
-    public void verifyNameError(String expectedText){
+    public void verifyNameError(String expectedText) {
         LOGGER.info("Verifying name error:" + expectedText);
         Assertions.assertEquals(expectedText, getText(nameFieldError), "Error text is not as expected");
     }
 
-    public void verifyTypeError(String expectedText){
+    public void verifyTypeError(String expectedText) {
         LOGGER.info("Verifying type error:" + expectedText);
         Assertions.assertEquals(expectedText, getText(typeDropdownError), "Error text is not as expected");
     }
 
-    public void verifyBirthDateError(String expectedText){
+    public void verifyBirthDateError(String expectedText) {
         LOGGER.info("Verifying birth date error:" + expectedText);
         Assertions.assertEquals(expectedText, getText(birthDateFieldError), "Error text is not as expected");
     }

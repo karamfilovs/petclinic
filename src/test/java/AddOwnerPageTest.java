@@ -116,6 +116,7 @@ public class AddOwnerPageTest extends BaseTest {
         webApp.addPetPage().addNewPet("Sarah", "10", Type.DOG);
         webApp.ownerInformationPage().verifySecondHeaderText("Pets and Visits");
     }
+
     @Test
     @DisplayName("PC-24: Cant add owner with special characters and numbers mixed in all fields without telephone")
     public void canAddOwnerWithSpecialCharactersAndNumbersMixedInAllFieldsWithoutTelephone() {
@@ -133,6 +134,7 @@ public class AddOwnerPageTest extends BaseTest {
         webApp.addOwnerPage().verifyCityNameWithMixedCharsError("Error text invalid data please enter string text for City field!!!");
         webApp.addOwnerPage().verifyTelephoneSeveralNumbersError("Error in invalid size number enter 10 digits field!!!");
     }
+
     @Test
     @DisplayName("PC-25: Can add owner and an animal with special characters and numbers mixed in all fields without telephone")
     public void canAddOwnerAndAnAnimalWithSpecialCharactersAndNumbersMixedInAllFieldsWithoutTelephone() {

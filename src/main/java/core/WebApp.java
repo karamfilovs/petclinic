@@ -170,12 +170,12 @@ public class WebApp {
         }
     }
 
-    public EditPetPage editPetPage(){
-        if(editPetPage == null){
+    public EditPetPage editPetPage() {
+        if (editPetPage == null) {
             editPetPage = new EditPetPage(driver);
-            return  editPetPage;
-        }else {
-            return  editPetPage;
+            return editPetPage;
+        } else {
+            return editPetPage;
         }
     }
 
