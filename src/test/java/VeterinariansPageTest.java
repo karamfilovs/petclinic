@@ -32,4 +32,21 @@ public class VeterinariansPageTest extends BaseTest {
         webApp.veterinariansPage().search("Helenaaaa");
         webApp.veterinariansPage().verifyTableTextContains("No matching records found");
     }
+
+    @Test
+    @DisplayName("PC-20: Can search veterinarian by specialty")
+    public void canSearchVeterinariansBySpecialty() {
+        webApp.components().mainMenu().clickVeterinariansLink();
+        webApp.veterinariansPage().search("radiology");
+        webApp.veterinariansPage().verifyTableTextContains("radiology");
+    }
+
+    @Test
+    @DisplayName("PC-21: Can search for not existing veterinarian specialty")
+    public void canSearchForNotExistingVeterinarianSpecialty() {
+        webApp.components().mainMenu().clickVeterinariansLink();
+        webApp.veterinariansPage().search("cardiology");
+        webApp.veterinariansPage().verifyTableTextContains("No matching records found");
+    }
+
 }

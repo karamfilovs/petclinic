@@ -15,6 +15,22 @@ public class OwnersPageTest extends BaseTest {
         webApp.components().mainMenu().clickFindOwnersLink();
         webApp.findOwnersPage().enterLastName("");
         webApp.findOwnersPage().clickFindOwnerButton();
+    }
+    @Test
+    @DisplayName("PC-22: Can search by existing first name")
+    public void canSearchByFirstName() {
+        webApp.components().mainMenu().clickFindOwnersLink();
+        webApp.findOwnersPage().clickFindOwnerButton();
+        webApp.ownersPage().search("Betty");
+        webApp.ownersPage().verifyTableTextContains("Betty");
+    }
 
+    @Test
+    @DisplayName("PC-23: Can search by not existing first name")
+    public void canSearchByNotExistingFirstName(){
+        webApp.components().mainMenu().clickFindOwnersLink();
+        webApp.findOwnersPage().clickFindOwnerButton();
+        webApp.ownersPage().search("Yavor");
+        webApp.ownersPage().verifyTableTextContains("No matching records found");
     }
 }

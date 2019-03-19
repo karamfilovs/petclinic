@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,11 +19,12 @@ public class OwnersPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//a[@class='btn']")
     private WebElement pdfButton;
 
-    @FindBy(how = How.ID, using = "owners_filter")
+    @FindBy(how = How.XPATH, using = "//input")
     private WebElement searchField;
 
     @FindBy(how = How.ID, using = "owners")
     private WebElement ownersTable;
+
 
     public OwnersPage(WebDriver driver) {
         super(driver);
@@ -62,5 +62,15 @@ public class OwnersPage extends BasePage {
     public void clickOwnerName(){
         LOGGER.info("Clicking on random owner name");
         click(ownerName);
+    }
+
+
+    /**
+     * Verifying table contains text
+     * @param expectedText text
+     */
+    public void verifyTableTextContains(String expectedText) {
+        LOGGER.info("Verifying table contains text:" + expectedText);
+        Assertions.assertTrue(ownersTable.getText().contains(expectedText), "Table does not contain expected text");
     }
 }

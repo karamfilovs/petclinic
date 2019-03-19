@@ -38,7 +38,11 @@ public class WebApp {
     private OwnerInformationPage ownerInformationPage;
     private AddPetPage addPetPage;
     private ErrorPage errorPage;
+<<<<<<< HEAD
     private VisitPage visitPage;
+=======
+    private EditPetPage editPetPage;
+>>>>>>> 7ef16699c46912d2911ae87feb19257ffb23147e
 
 
     public void startBrowser(String browser) {
@@ -177,6 +181,15 @@ public class WebApp {
             return components;
         } else {
             return components;
+        }
+    }
+
+    public EditPetPage editPetPage(){
+        if(editPetPage == null){
+            editPetPage = new EditPetPage(driver);
+            return  editPetPage;
+        }else {
+            return  editPetPage;
         }
     }
 
