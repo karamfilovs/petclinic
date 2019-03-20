@@ -25,6 +25,6 @@ public class MyStepdefs {
 
     @Then("^user should be add Owner Information page$")
     public void userShouldBeAddOwnerInformationPage() {
-     webApp.ownerInformationPage().verifySecondHeaderText("Owner Information");
+        webApp.ownerInformationPage().verifySecondHeaderText("Owner Information");
     }
 }

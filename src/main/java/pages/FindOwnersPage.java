@@ -24,7 +24,7 @@ public class FindOwnersPage extends BasePage {
     @FindBy(how = How.ID, using = "owner.errors")
     private WebElement errorMessage;
 
-    
+
     public FindOwnersPage(WebDriver driver) {
         super(driver);
     }
@@ -79,7 +79,7 @@ public class FindOwnersPage extends BasePage {
     /**
      * Clicks Add Owner link at the bottom
      */
-    public void clickAddOwnerLink(){
+    public void clickAddOwnerLink() {
         LOGGER.info("Clicking Add Owner link");
         click(addOwnerLink);
     }

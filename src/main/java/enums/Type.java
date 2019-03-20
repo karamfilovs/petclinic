@@ -6,13 +6,13 @@ public enum Type {
     LIZARD("lizard"),
     CAT("cat");
 
-    private Type(String type){
+    private Type(String type) {
         this.type = type;
     }
 
     private String type;
 
-    public String getType(){
+    public String getType() {
         return type;
     }
 }

@@ -34,32 +34,32 @@ public class OwnersPage extends BasePage {
     /**
      *
      */
-    public void clickPdfButton(){
+    public void clickPdfButton() {
         LOGGER.info("Clicking PDF export button");
         click(pdfButton);
     }
 
     /**
-     *
      * @param text
      */
-    public void search(String text){
+    public void search(String text) {
         LOGGER.info("Searching owners by:" + text);
         typeText(searchField, text);
     }
 
     /**
      * Verifies table rows count
+     *
      * @param expectedRowCount number of rows
      */
-    public void verifyTableTotalRows(int expectedRowCount){
+    public void verifyTableTotalRows(int expectedRowCount) {
         Assertions.assertEquals(expectedRowCount, getTableRows(ownersTable).size() - 1, "Expected rows count does not match");
     }
 
     /**
      * Clicks on owner name inside table
      */
-    public void clickOwnerName(){
+    public void clickOwnerName() {
         LOGGER.info("Clicking on random owner name");
         click(ownerName);
     }
@@ -67,6 +67,7 @@ public class OwnersPage extends BasePage {
 
     /**
      * Verifying table contains text
+     *
      * @param expectedText text
      */
     public void verifyTableTextContains(String expectedText) {

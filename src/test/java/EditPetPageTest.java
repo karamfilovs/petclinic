@@ -18,7 +18,7 @@ public class EditPetPageTest extends BaseTest {
     @Test
     @Tag("Rossen")
     @DisplayName("PC-12: Can edit pet name")
-    public void canEditPetName(){
+    public void canEditPetName() {
 
         webApp.editPetPage().type("Tosho");
         webApp.editPetPage().clickUpdateButton();

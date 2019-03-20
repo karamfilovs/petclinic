@@ -45,6 +45,7 @@ public class VeterinariansPage extends BasePage {
 
     /**
      * Verifying table contains text
+     *
      * @param expectedText text
      */
     public void verifyTableTextContains(String expectedText) {

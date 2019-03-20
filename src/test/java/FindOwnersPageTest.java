@@ -38,6 +38,7 @@ public class FindOwnersPageTest extends BaseTest {
         webApp.ownersPage().verifyHeaderText("Owners");
         webApp.ownersPage().verifyTableTotalRows(2);
     }
+
     @Test
     @DisplayName("PC-26: Can search for existing owners by chars and download pdf file with information about them")
     public void canSearchForExistingOwnersByCharsAndDownloadPdfFileWithInformationAboutThem() {
