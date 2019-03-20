@@ -42,6 +42,14 @@ public class OwnerInformationPage extends BasePage {
         Assertions.assertEquals(expectedText, getText(secondHeader), "Header text is not as expected");
     }
 
+    /**
+     * This method checks if the new visit has been added
+     */
+    public void verifyAddedNewVisit() {
+        WebElement newvisit = driver.findElement(By.cssSelector("table.table:nth-of-type(2) table.table-condensed td"));
+        Assertions.assertTrue(newvisit.isDisplayed());
+    }
+
 
     /**
      * Clicks Edit Owner button
@@ -59,14 +67,6 @@ public class OwnerInformationPage extends BasePage {
         click(addPetButton);
     }
 
-
-    /**
-     * This method checks if the new visit has been added
-     */
-    public void verifyAddedNewVisit() {
-        WebElement newvisit = driver.findElement(By.cssSelector("table.table:nth-of-type(2) table.table-condensed td"));
-        Assertions.assertTrue(newvisit.isDisplayed());
-    }
 
     public void  clickEditPet(){
         LOGGER.info("Open the pet edid page");

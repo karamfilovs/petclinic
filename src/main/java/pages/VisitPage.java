@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,27 +32,51 @@ public class VisitPage extends BasePage{
     /**
      * Fills the new visit form
      * @param dateforvisit - sets the date for visit(should be in format YYYY/MM/DD)
-     * @param descfield - disciption field for the visit
      */
-    public void fillNewVisitInformation(String dateforvisit, String descfield) {
+    public void typeDateForVisit(String dateforvisit) {
         WebElement date = driver.findElement(By.id("date"));
         date.clear();
         date.sendKeys(dateforvisit);
         date.submit();
+    }
+
+    /**
+     * This method fills the description field
+     * @param descfield
+     */
+    public void fillDescriptionfield(String descfield) {
         WebElement desc = driver.findElement(By.id("description"));
         desc.sendKeys(descfield);
     }
 
     /**
      * Clicks the button to add a new visit
+     * Note - the explicit wait is necessary otherwise a WebDriverException "Element is not clickable
+     * at point"
      */
     public void addPetVisitButtonClick() {
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.id("ui-datepicker-div"))));
         WebElement addvisitbutton = driver.findElement(By.cssSelector("div.form-actions button"));
         addvisitbutton.click();
     }
 
+    /**
+     * Verifies if the error message has appeared
+     */
     public void verifyErrorMessage() {
         WebElement errormessage = driver.findElement(By.cssSelector("input#description + span"));
         Assertions.assertEquals("may not be empty",errormessage.getText());
+    }
+
+    /**
+     * This method picks a date form the calendar
+     * @param day - the day of the month
+     */
+    public void pickDateForVisitFromCalendar(String day) {
+        WebElement datefield = driver.findElement(By.id("date"));
+        datefield.click();
+        WebElement dayofmonth = driver.findElement(By.xpath("//a[text()='" + day + "']"));
+        dayofmonth.click();
     }
 }

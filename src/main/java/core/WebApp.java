@@ -38,11 +38,8 @@ public class WebApp {
     private OwnerInformationPage ownerInformationPage;
     private AddPetPage addPetPage;
     private ErrorPage errorPage;
-<<<<<<< HEAD
     private VisitPage visitPage;
-=======
     private EditPetPage editPetPage;
->>>>>>> 7ef16699c46912d2911ae87feb19257ffb23147e
 
 
     public void startBrowser(String browser) {
@@ -88,8 +85,7 @@ public class WebApp {
     }
 
     public void quit() {
-
-        driver.quit();
+       driver.quit();
     }
 
 
