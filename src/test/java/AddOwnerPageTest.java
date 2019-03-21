@@ -2,6 +2,7 @@ import core.BaseTest;
 import enums.Type;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class AddOwnerPageTest extends BaseTest {
@@ -150,5 +151,27 @@ public class AddOwnerPageTest extends BaseTest {
         webApp.ownerInformationPage().clickAddPetButton();
         webApp.addPetPage().addNewPet("Dr@gonF#y99", "3", Type.LIZARD);
         webApp.ownerInformationPage().verifySecondHeaderText("Pets and Visits");
+    }
+    @Test
+    @Tag("negative")
+    @DisplayName("PC-26 Cannot add owner with space white space")
+/*
+The text fields have to trim white spaces on submit. If it's done on the following test if we send a space character
+the fields have to be empty
+when the Add user button is clicked and the proper error message has to be displayed for every empty field
+ */
+    public void cantAddOwnerWithSpaceName(){
+        webApp.components().mainMenu().clickFindOwnersLink();
+        webApp.findOwnersPage().clickAddOwnerLink();
+        webApp.addOwnerPage().enterFirstName(" ");
+        webApp.addOwnerPage().enterLastName(" ");
+        webApp.addOwnerPage().enterAddress(" ");
+        webApp.addOwnerPage().enterCity(" ");
+        webApp.addOwnerPage().enterTelephone("088888888");
+        webApp.addOwnerPage().clickAddOwnerButton();
+        webApp.addOwnerPage().verifyFirstNameError("may not be empty");
+        webApp.addOwnerPage().verifyLastNameError("may not be empty");
+        webApp.addOwnerPage().verifyAddressErrorMessage("may not be empty");
+        webApp.addOwnerPage().verifyCityErrorMessage("may not be empty");
     }
 }

@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,8 +12,7 @@ public class AddOwnerPage extends BasePage {
     private static final Logger LOGGER = LoggerFactory.getLogger(AddOwnerPage.class);
     private static final String PAGE_URL = "/petclinic/owners/new";
 
-    @FindBy(how = How.XPATH, using = "//div[@class='form-actions']//button")
-    private WebElement addOwnerButton;
+
 
     @FindBy(how = How.ID, using = "firstName")
     private WebElement firstNameField;
@@ -37,11 +35,17 @@ public class AddOwnerPage extends BasePage {
     @FindBy(how = How.ID, using = "address")
     private WebElement addressField;
 
+    @FindBy(how = How.XPATH, using = "//*[@id=\"add-owner-form\"]/div[3]/div/span")
+    private WebElement addressFieldErrorMessage;
+
     @FindBy(how = How.XPATH, using = "//input[@id='address']//following-sibling::span")
     private WebElement addressMixedCharsErrorMessage;
 
     @FindBy(how = How.ID, using = "city")
     private WebElement cityField;
+
+    @FindBy(how = How.XPATH, using = "//*[@id=\"add-owner-form\"]/div[4]/div/span")
+    private WebElement cityFieldErrorMessage;
 
     @FindBy(how = How.XPATH, using = "//input[@id='city']//following-sibling::span")
     private WebElement cityMixedCharsErrorMessage;
@@ -54,6 +58,9 @@ public class AddOwnerPage extends BasePage {
 
     @FindBy(how = How.XPATH, using = "//input[@id='telephone']//following-sibling::span")
     private WebElement telephoneSeveralNumbersErrorMessage;
+
+    @FindBy(how = How.XPATH, using = "//div[@class='form-actions']//button")
+    private WebElement addOwnerButton;
 
     public AddOwnerPage(WebDriver driver) {
         super(driver);
@@ -128,5 +135,15 @@ public class AddOwnerPage extends BasePage {
     public void verifyTelephoneSeveralNumbersError(String expectedText) {
         LOGGER.info("Verifying telephone error:" + expectedText);
         Assertions.assertEquals(expectedText, getText(telephoneSeveralNumbersErrorMessage), "Error text is not as expected");
+    }
+
+    public void verifyAddressErrorMessage(String expectedText) {
+        LOGGER.info("Verifying Address field error message");
+        Assertions.assertEquals(expectedText, getText(addressFieldErrorMessage), "Error text is not as expected");
+    }
+
+    public void verifyCityErrorMessage(String expectedText) {
+        LOGGER.info("Verifying City field error message");
+        Assertions.assertEquals(expectedText, getText(cityFieldErrorMessage), "Error text is not as expected");
     }
 }

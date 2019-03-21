@@ -23,8 +23,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class BasePage {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(BasePage.class);
@@ -64,7 +62,7 @@ public class BasePage {
         waitForElementVisibility(element);
         element.clear();
         element.sendKeys(text);
-        element.sendKeys(Keys.ENTER);
+        //element.sendKeys(Keys.ENTER);
     }
 
     /**
