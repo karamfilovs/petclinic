@@ -27,4 +27,9 @@ public class MyStepdefs {
     public void userShouldBeAddOwnerInformationPage() {
      webApp.ownerInformationPage().verifySecondHeaderText("Owner Information");
     }
+
+    @Then("^Owner Information page header text should be  \"([^\"]*)\"$")
+    public void ownerInformationPageHeaderTextShouldBe(String arg0) throws Throwable {
+        System.out.println("This is for test purposes only");
+    }
 }
