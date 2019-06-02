@@ -23,8 +23,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class BasePage {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(BasePage.class);
@@ -35,7 +33,6 @@ public class BasePage {
 
     @FindBy(how = How.XPATH, using = "//h2")
     private WebElement headerText;
-
 
 
     public BasePage(WebDriver driver) {
@@ -54,7 +51,6 @@ public class BasePage {
     }
 
 
-
     protected void typeTextWithActionsBuilder(WebElement element, String text) {
         waitForElementVisibility(element);
         Actions builder = new Actions(driver);
@@ -66,6 +62,7 @@ public class BasePage {
         waitForElementVisibility(element);
         element.clear();
         element.sendKeys(text);
+        //element.sendKeys(Keys.ENTER);
     }
 
     /**
@@ -220,7 +217,7 @@ public class BasePage {
     /**
      * gets an option from a dropdown based on the visible text
      *
-     * @param dropDown                  the drop down WebElement
+     * @param dropDown the drop down WebElement
      * @return returns selected value as string
      */
     public String getDropDownOption(WebElement dropDown) {
@@ -228,7 +225,6 @@ public class BasePage {
         Select select = new Select(dropDown);
         return getText(select.getFirstSelectedOption());
     }
-
 
 
     public boolean waitForFullPageOrJsAjaxToLoad() {
@@ -321,7 +317,6 @@ public class BasePage {
     }
 
 
-
     protected List<WebElement> getTableRows(WebElement table) {
         Validate.notNull(table, "Table element should not be null");
         List<WebElement> rows = table.findElements(By.tagName("tr"))   // get table rows
@@ -339,7 +334,7 @@ public class BasePage {
     }
 
 
-    protected List<WebElement> getTableCells(WebElement table){
+    protected List<WebElement> getTableCells(WebElement table) {
         List<WebElement> cells = new ArrayList<>();
         getTableRows(table).forEach(row -> cells.addAll(getCells(row)));
         return cells;
@@ -347,6 +342,7 @@ public class BasePage {
 
     /**
      * Scrolling down to element
+     *
      * @param element target element
      */
     protected void scrollDownToElement(WebElement element) {
