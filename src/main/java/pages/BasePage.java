@@ -27,7 +27,7 @@ public class BasePage {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(BasePage.class);
 
-    protected final String BASE_URL = "http://localhost:9966";
+    protected final String BASE_URL = "http://localhost:8080/";
 
     protected WebDriver driver;
 

@@ -17,9 +17,10 @@ public class EditPetPage extends BasePage {
 
     private String petName;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"name\"]")
+    @FindBy(how = How.ID, using = "name")
     private WebElement petNameField;
-    @FindBy(how = How.XPATH, using = "//*[@id=\"pet\"]/div[5]/button")
+
+    @FindBy(how = How.XPATH, using = "//button[@class='btn btn-default']")
     private WebElement updateButton;
 
     public void type(String petName) {
@@ -33,8 +34,4 @@ public class EditPetPage extends BasePage {
         updateButton.click();
     }
 
-    public void verifyPetNamIsChanged(String expectedName, String message) {
-        LOGGER.info("Veriying the pet's name is changed to:" + petNameField);
-        Assertions.assertEquals(OwnerInformationPage.verifyEditedPet.getText(), expectedName, message);
-    }
 }

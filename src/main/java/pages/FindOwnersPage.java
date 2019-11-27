@@ -15,14 +15,11 @@ public class FindOwnersPage extends BasePage {
     @FindBy(how = How.ID, using = "lastName")
     private WebElement lastNameField;
 
-    @FindBy(how = How.XPATH, using = "//a[@href='/petclinic/owners/new']")
+    @FindBy(how = How.XPATH, using = "//a[normalize-space(text())='Add Owner']")
     private WebElement addOwnerLink;
 
-    @FindBy(how = How.XPATH, using = "//div[@class='form-actions']/button")
+    @FindBy(how = How.XPATH, using = "//button[normalize-space(text())='Find Owner']")
     private WebElement findOwnerButton;
-
-    @FindBy(how = How.ID, using = "owner.errors")
-    private WebElement errorMessage;
 
 
     public FindOwnersPage(WebDriver driver) {
@@ -54,16 +51,6 @@ public class FindOwnersPage extends BasePage {
     public void clickFindOwnerButton() {
         LOGGER.info("Clicking Find Owner button");
         click(findOwnerButton);
-    }
-
-
-    /**
-     * Verifies search error message text
-     *
-     * @param expectedText page header text
-     */
-    public void verifyErrorMessage(String expectedText) {
-        Assertions.assertEquals(expectedText, getText(errorMessage), "Error message text is not as expected");
     }
 
     /**

@@ -11,21 +11,50 @@ import org.slf4j.LoggerFactory;
 public class OwnerInformationPage extends BasePage {
     private static final Logger LOGGER = LoggerFactory.getLogger(OwnerInformationPage.class);
 
+    @FindBy(how = How.XPATH, using = "//h2[1]")
+    private WebElement firstHeader;
+
     @FindBy(how = How.XPATH, using = "//h2[2]")
     private WebElement secondHeader;
 
-    @FindBy(how = How.XPATH, using = "//a[@class='btn btn-success']")
-    private WebElement addPetButton;
-
-    @FindBy(how = How.XPATH, using = "//a[@class='btn btn-info']")
+    @FindBy(how = How.XPATH, using = "//a[normalize-space(text())='Edit Owner']")
     private WebElement editOwnerButton;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div/table[2]/tbody/tr/td[1]/dl/dd[1]")
-    public static WebElement verifyEditedPet;
+    @FindBy(how = How.XPATH, using = "//a[normalize-space(text())='Add New Pet']")
+    private WebElement addPetButton;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div/table[2]/tbody/tr/td[2]/table/tbody/tr/td[1]/a")
-    public static WebElement editPetLink;
+    @FindBy(how = How.XPATH, using = "//a[normalize-space(text())='Edit Pet']")
+    private WebElement editPetButton;
 
+    @FindBy(how = How.XPATH, using = "//a[normalize-space(text())='Add Visit']")
+    private WebElement addPetVisitButton;
+
+    @FindBy(how = How.XPATH, using = "//td[preceding-sibling::*='Name']")
+    private WebElement nameInfoOwner;
+
+    @FindBy(how = How.XPATH, using = "//td[preceding-sibling::*='Address']")
+    private WebElement addressInfo;
+
+    @FindBy(how = How.XPATH, using = "//td[preceding-sibling::*='City']")
+    private WebElement cityInfo;
+
+    @FindBy(how = How.XPATH, using = "//td[preceding-sibling::*='Telephone']")
+    private WebElement telephoneInfo;
+
+    @FindBy(how = How.XPATH, using = "//dd[preceding-sibling::*[1]='Name']")
+    private WebElement nameInfoPet;
+
+    @FindBy(how = How.XPATH, using = "//dd[preceding-sibling::*[1]='Birth Date']")
+    private WebElement birthDateInfo;
+
+    @FindBy(how = How.XPATH, using = "//dd[preceding-sibling::*[1]='Type']")
+    private WebElement typeInfo;
+
+//    @FindBy(how = How.XPATH, using = "")
+//    private WebElement visitDate;
+//
+//    @FindBy(how = How.XPATH, using = "")
+//    private WebElement description;
 
     public OwnerInformationPage(WebDriver driver) {
         super(driver);
@@ -61,6 +90,6 @@ public class OwnerInformationPage extends BasePage {
 
     public void clickEditPet() {
         LOGGER.info("Open the pet edid page");
-        click(editPetLink);
+        click(editPetButton);
     }
 }
