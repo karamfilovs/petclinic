@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 public class HomePage extends BasePage {
     private static final Logger LOGGER = LoggerFactory.getLogger(HomePage.class);
-    private static final String PAGE_URL = "/petclinic";
+    private static final String PAGE_URL = "/";
 
 
     public HomePage(WebDriver driver) {

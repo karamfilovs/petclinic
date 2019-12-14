@@ -12,16 +12,16 @@ import pages.BasePage;
 public class MainMenu extends BasePage {
     private static final Logger LOGGER = LoggerFactory.getLogger(MainMenu.class);
 
-    @FindBy(how = How.XPATH, using = "//ul[@class='nav']//li[1]")
+    @FindBy(how = How.XPATH, using = "//a[@title='home']")
     private WebElement homePageLink;
 
-    @FindBy(how = How.XPATH, using = "//ul[@class='nav']//li[2]")
+    @FindBy(how = How.XPATH, using = "//a[@title='find owners']")
     private WebElement findOwnersLink;
 
-    @FindBy(how = How.XPATH, using = "//ul[@class='nav']//li[3]")
+    @FindBy(how = How.XPATH, using = "//a[@title='veterinarians']")
     private WebElement veterinariansLink;
 
-    @FindBy(how = How.XPATH, using = "//ul[@class='nav']//li[4]")
+    @FindBy(how = How.XPATH, using = "//a[@title='trigger a RuntimeException to see how it is handled']")
     private WebElement errorLink;
 
 

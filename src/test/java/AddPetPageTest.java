@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 public class AddPetPageTest extends BaseTest {
     @BeforeEach
-    public void loadPetClinic() {
+    public void loadAddPetScreen() {
         webApp.homePage().gotoPage();
         webApp.components().mainMenu().clickFindOwnersLink();
         webApp.findOwnersPage().enterLastName("");

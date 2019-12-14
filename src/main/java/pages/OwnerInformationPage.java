@@ -14,10 +14,10 @@ public class OwnerInformationPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//h2[2]")
     private WebElement secondHeader;
 
-    @FindBy(how = How.XPATH, using = "//a[@class='btn btn-success']")
+    @FindBy(how = How.XPATH, using = "//a[contains(text(),'New Pet')]")
     private WebElement addPetButton;
 
-    @FindBy(how = How.XPATH, using = "//a[@class='btn btn-info']")
+    @FindBy(how = How.XPATH, using = "//a[text()='Edit Owner']")
     private WebElement editOwnerButton;
 
     @FindBy(how = How.XPATH, using = "/html/body/div/table[2]/tbody/tr/td[1]/dl/dd[1]")

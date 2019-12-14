@@ -17,7 +17,7 @@ public class AddOwnerPageTest extends BaseTest {
     public void canGoToNewOwnerPage() {
         webApp.components().mainMenu().clickFindOwnersLink();
         webApp.findOwnersPage().clickAddOwnerLink();
-        webApp.addOwnerPage().verifyHeaderText("New Owner");
+        webApp.addOwnerPage().verifyHeaderText("Owner");
     }
 
 

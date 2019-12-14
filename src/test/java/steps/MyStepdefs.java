@@ -5,13 +5,14 @@ import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.junit.jupiter.api.BeforeAll;
 
 public class MyStepdefs {
-    WebApp webApp = new WebApp();
+    private WebApp webApp = new WebApp();
 
     @Given("^I am at Petclinic Owners page$")
     public void iAmAtPetclinicOwnersPage() {
-        webApp.startBrowser(System.getProperty("browser"));
+        webApp.startBrowser("chrome");
         webApp.homePage().gotoPage();
         webApp.components().mainMenu().clickFindOwnersLink();
     }
@@ -32,4 +33,6 @@ public class MyStepdefs {
     public void ownerInformationPageHeaderTextShouldBe(String arg0) throws Throwable {
         System.out.println("This is for test purposes only");
     }
+
+
 }

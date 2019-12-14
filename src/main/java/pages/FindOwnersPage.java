@@ -15,13 +15,13 @@ public class FindOwnersPage extends BasePage {
     @FindBy(how = How.ID, using = "lastName")
     private WebElement lastNameField;
 
-    @FindBy(how = How.XPATH, using = "//a[@href='/petclinic/owners/new']")
+    @FindBy(how = How.XPATH, using = "//a[text()='Add Owner']")
     private WebElement addOwnerLink;
 
-    @FindBy(how = How.XPATH, using = "//div[@class='form-actions']/button")
+    @FindBy(how = How.XPATH, using = "//button[@type='submit']")
     private WebElement findOwnerButton;
 
-    @FindBy(how = How.ID, using = "owner.errors")
+    @FindBy(how = How.XPATH, using = "//p")
     private WebElement errorMessage;
 
 
@@ -63,6 +63,7 @@ public class FindOwnersPage extends BasePage {
      * @param expectedText page header text
      */
     public void verifyErrorMessage(String expectedText) {
+        LOGGER.info("Checking error message text");
         Assertions.assertEquals(expectedText, getText(errorMessage), "Error message text is not as expected");
     }
 

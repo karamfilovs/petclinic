@@ -59,7 +59,7 @@ public class AddOwnerPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//input[@id='telephone']//following-sibling::span")
     private WebElement telephoneSeveralNumbersErrorMessage;
 
-    @FindBy(how = How.XPATH, using = "//div[@class='form-actions']//button")
+    @FindBy(how = How.XPATH, using = "//button[@type='submit']")
     private WebElement addOwnerButton;
 
     public AddOwnerPage(WebDriver driver) {
