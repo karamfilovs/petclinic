@@ -13,9 +13,8 @@ import org.slf4j.LoggerFactory;
 
 public class AddPetPage extends BasePage {
     private static final Logger LOGGER = LoggerFactory.getLogger(AddPetPage.class);
-    private static final String PAGE_URL = "/petclinic/owners/new";
 
-    @FindBy(how = How.XPATH, using = "//div[@class='form-actions']//button")
+    @FindBy(how = How.XPATH, using = "//button[@type='submit']")
     private WebElement addPetButton;
 
     @FindBy(how = How.ID, using = "name")
@@ -30,15 +29,12 @@ public class AddPetPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//input[@id='birthDate']/following-sibling::span")
     private WebElement birthDateFieldError;
 
-    @FindBy(how = How.XPATH, using = "//table[@class='ui-datepicker-calendar']")
-    private WebElement datePickerCalendar;
-
 
     @FindBy(how = How.ID, using = "type")
     private WebElement typeDropdown;
 
-    @FindBy(how = How.XPATH, using = "//select[@id='type']/following-sibling::span")
-    private WebElement typeDropdownError;
+    @FindBy(how = How.CSS, using = "span.help-inline")
+    private WebElement errorMessage;
 
     public AddPetPage(WebDriver driver) {
         super(driver);
@@ -60,10 +56,9 @@ public class AddPetPage extends BasePage {
         click(birthDateField);
     }
 
-    public void selectDateFromCalendar(String day) {
-        LOGGER.info("Selecting day from the month:" + day);
-        click(birthDateField);
-        datePickerCalendar.findElement(By.xpath("//a[text()=" + day + "]")).click();
+    public void enterDate(String date) {
+        LOGGER.info("Entering date:" + date);
+
     }
 
     public void clickAddPetButton() {
@@ -76,12 +71,12 @@ public class AddPetPage extends BasePage {
      * Adds new pet for specific owner
      *
      * @param name name
-     * @param day  date in format day/month/year
+     * @param date  date in format day/month/year
      * @param type animal type
      */
-    public void addNewPet(String name, String day, Type type) {
+    public void addNewPet(String name, String date, Type type) {
         enterName(name);
-        selectDateFromCalendar(day);
+        enterDate(date);
         selectType(type);
         clickAddPetButton();
     }
@@ -92,10 +87,12 @@ public class AddPetPage extends BasePage {
         Assertions.assertEquals(expectedText, getText(nameFieldError), "Error text is not as expected");
     }
 
-    public void verifyTypeError(String expectedText) {
-        LOGGER.info("Verifying type error:" + expectedText);
-        Assertions.assertEquals(expectedText, getText(typeDropdownError), "Error text is not as expected");
+    public void verifyErrorDisplayed() {
+        LOGGER.info("Verifying error is displayed");
+        Assertions.assertTrue(errorMessage.isDisplayed());
     }
+
+
 
     public void verifyBirthDateError(String expectedText) {
         LOGGER.info("Verifying birth date error:" + expectedText);

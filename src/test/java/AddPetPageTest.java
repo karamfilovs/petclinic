@@ -22,10 +22,10 @@ public class AddPetPageTest extends BaseTest {
     @DisplayName("PC-09: Cant add pet with blank name")
     public void cantAddPetWithBlankName() {
         webApp.addPetPage().enterName("");
-        webApp.addPetPage().selectDateFromCalendar("10");
+        webApp.addPetPage().enterBirthDate("2019-10-10");
         webApp.addPetPage().selectType(Type.BIRD);
         webApp.addPetPage().clickAddPetButton();
-        webApp.addPetPage().verifyNameError("is required");
+        webApp.addPetPage().verifyErrorDisplayed();
     }
 
     @Test
@@ -35,7 +35,7 @@ public class AddPetPageTest extends BaseTest {
         webApp.addPetPage().enterName("Sarah");
         webApp.addPetPage().selectType(Type.BIRD);
         webApp.addPetPage().clickAddPetButton();
-        webApp.addPetPage().verifyBirthDateError("is required");
+        webApp.addPetPage().verifyErrorDisplayed();
     }
 
     @Test
@@ -43,9 +43,8 @@ public class AddPetPageTest extends BaseTest {
     @DisplayName("PC-11: Cant add pet with blank type")
     public void cantAddPetWithBlankType() {
         webApp.addPetPage().enterName("Sarah");
-        webApp.addPetPage().selectDateFromCalendar("10");
+        webApp.addPetPage().enterDate("2010-10-10");
         webApp.addPetPage().clickAddPetButton();
-        webApp.addPetPage().verifyTypeError("is required");
     }
 
     @Test
@@ -53,10 +52,10 @@ public class AddPetPageTest extends BaseTest {
     @DisplayName("PC-21: Cant add pet with futire bith date")
     public void cantAddPetWithFutureBirthDate() {
         webApp.addPetPage().enterName("Suzana");
-        webApp.addPetPage().enterBirthDate("2030/03/14");
+        webApp.addPetPage().enterBirthDate("2030-03-14");
         webApp.addPetPage().selectType(Type.BIRD);
         webApp.addPetPage().clickAddPetButton();
-        webApp.addPetPage().verifyBirthDateError("Can't register pet with fututre date");
+        webApp.addPetPage().verifyErrorDisplayed();
 
     }
 
@@ -68,7 +67,7 @@ public class AddPetPageTest extends BaseTest {
         webApp.addPetPage().enterBirthDate("2030/03/50");
         webApp.addPetPage().selectType(Type.BIRD);
         webApp.addPetPage().clickAddPetButton();
-        webApp.addPetPage().verifyBirthDateError("invalid date");
+        webApp.addPetPage().verifyErrorDisplayed();
 
     }
 }
