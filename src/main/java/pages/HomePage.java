@@ -11,8 +11,10 @@ import org.slf4j.LoggerFactory;
 
 public class HomePage extends BasePage {
     private static final Logger LOGGER = LoggerFactory.getLogger(HomePage.class);
-    private static final String PAGE_URL = "/petclinic";
+    private static final String PAGE_URL = "/";
 
+    @FindBy(how = How.XPATH, using = "//img[@class='img-responsive']")
+    private WebElement image;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -26,5 +28,12 @@ public class HomePage extends BasePage {
         navigateTo(PAGE_URL);
     }
 
+    /**
+     * Verifies image content is displayed
+     */
+    public void verifyImagePresent() {
+        LOGGER.info("Verifying image is present.");
+        Assertions.assertTrue(image.isDisplayed(), "Image is not displayed");
+    }
 
 }
