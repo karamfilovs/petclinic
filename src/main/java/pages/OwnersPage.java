@@ -25,6 +25,9 @@ public class OwnersPage extends BasePage {
     @FindBy(how = How.ID, using = "owners")
     private WebElement ownersTable;
 
+    @FindBy(how = How.XPATH, using = "//h2")
+    private WebElement header;
+
 
     public OwnersPage(WebDriver driver) {
         super(driver);
@@ -73,5 +76,10 @@ public class OwnersPage extends BasePage {
     public void verifyTableTextContains(String expectedText) {
         LOGGER.info("Verifying table contains text:" + expectedText);
         Assertions.assertTrue(ownersTable.getText().contains(expectedText), "Table does not contain expected text");
+    }
+
+    public void verifyOwnersHeader(String text) {
+        LOGGER.info("Verifying header contains text:" + text);
+        Assertions.assertTrue(header.getText().contains(text), "Header does not contain expected text");
     }
 }
