@@ -17,49 +17,34 @@ public class AddOwnerPage extends BasePage {
     @FindBy(how = How.ID, using = "firstName")
     private WebElement firstNameField;
 
-    @FindBy(how = How.XPATH, using = "//input[@id='firstName']//following-sibling::span")
+    @FindBy(how = How.XPATH, using = "//input[@id='firstName']/..//following-sibling::span[last()]")
     private WebElement firstNameErrorMessage;
-
-    @FindBy(how = How.XPATH, using = "//input[@id='firstName']//following-sibling::span")
-    private WebElement firstNameMixedCharsErrorMessage;
 
     @FindBy(how = How.ID, using = "lastName")
     private WebElement lastNameField;
 
-    @FindBy(how = How.XPATH, using = "//input[@id='lastName']//following-sibling::span")
+    @FindBy(how = How.XPATH, using = "//input[@id='lastName']/..//following-sibling::span[last()]")
     private WebElement lastNameErrorMessage;
-
-    @FindBy(how = How.XPATH, using = "//input[@id='lastName']//following-sibling::span")
-    private WebElement lastNameMixedCharsErrorMessage;
 
     @FindBy(how = How.ID, using = "address")
     private WebElement addressField;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"add-owner-form\"]/div[3]/div/span")
+    @FindBy(how = How.XPATH, using = "//input[@id='address']/..//following-sibling::span[last()]")
     private WebElement addressFieldErrorMessage;
-
-    @FindBy(how = How.XPATH, using = "//input[@id='address']//following-sibling::span")
-    private WebElement addressMixedCharsErrorMessage;
 
     @FindBy(how = How.ID, using = "city")
     private WebElement cityField;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"add-owner-form\"]/div[4]/div/span")
+    @FindBy(how = How.XPATH, using = "//input[@id='city']/..//following-sibling::span[last()]")
     private WebElement cityFieldErrorMessage;
-
-    @FindBy(how = How.XPATH, using = "//input[@id='city']//following-sibling::span")
-    private WebElement cityMixedCharsErrorMessage;
 
     @FindBy(how = How.ID, using = "telephone")
     private WebElement telephoneField;
 
-    @FindBy(how = How.XPATH, using = "//input[@id='telephone']//following-sibling::span")
+    @FindBy(how = How.XPATH, using = "//input[@id='telephone']/..//following-sibling::span[last()]")
     private WebElement telephoneErrorMessage;
 
-    @FindBy(how = How.XPATH, using = "//input[@id='telephone']//following-sibling::span")
-    private WebElement telephoneSeveralNumbersErrorMessage;
-
-    @FindBy(how = How.XPATH, using = "//button[@type='submit']")
+    @FindBy(how = How.XPATH, using = "//button[@class='btn btn-default']")
     private WebElement addOwnerButton;
 
     public AddOwnerPage(WebDriver driver) {
@@ -110,31 +95,6 @@ public class AddOwnerPage extends BasePage {
     public void verifyTelephoneError(String expectedText) {
         LOGGER.info("Verifying telephone error:" + expectedText);
         Assertions.assertEquals(expectedText, getText(telephoneErrorMessage), "Error text is not as expected");
-    }
-
-    public void verifyFirstNameWithMixedCharsError(String expectedText) {
-        LOGGER.info("Verifying first name error:" + expectedText);
-        Assertions.assertEquals(expectedText, getText(firstNameMixedCharsErrorMessage), "Error text is not as expected");
-    }
-
-    public void verifyLastNameWithMixedCharsError(String expectedText) {
-        LOGGER.info("Verifying last name error:" + expectedText);
-        Assertions.assertEquals(expectedText, getText(lastNameMixedCharsErrorMessage), "Error text is not as expected");
-    }
-
-    public void verifyAddressWithMixedCharsError(String expectedText) {
-        LOGGER.info("Verifying telephone error:" + expectedText);
-        Assertions.assertEquals(expectedText, getText(addressMixedCharsErrorMessage), "Error text is not as expected");
-    }
-
-    public void verifyCityNameWithMixedCharsError(String expectedText) {
-        LOGGER.info("Verifying first name error:" + expectedText);
-        Assertions.assertEquals(expectedText, getText(cityMixedCharsErrorMessage), "Error text is not as expected");
-    }
-
-    public void verifyTelephoneSeveralNumbersError(String expectedText) {
-        LOGGER.info("Verifying telephone error:" + expectedText);
-        Assertions.assertEquals(expectedText, getText(telephoneSeveralNumbersErrorMessage), "Error text is not as expected");
     }
 
     public void verifyAddressErrorMessage(String expectedText) {

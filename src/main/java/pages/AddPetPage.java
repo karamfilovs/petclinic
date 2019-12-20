@@ -2,39 +2,34 @@ package pages;
 
 import enums.Type;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class AddPetPage extends BasePage {
     private static final Logger LOGGER = LoggerFactory.getLogger(AddPetPage.class);
-
-    @FindBy(how = How.XPATH, using = "//button[@type='submit']")
-    private WebElement addPetButton;
+    private static final String PAGE_URL = "/petclinic/owners/new";
 
     @FindBy(how = How.ID, using = "name")
     private WebElement nameField;
 
-    @FindBy(how = How.XPATH, using = "//input[@id='name']/following-sibling::span")
+    @FindBy(how = How.XPATH, using = "//input[@id='name']/..//following-sibling::span[last()]")
     private WebElement nameFieldError;
 
     @FindBy(how = How.ID, using = "birthDate")
     private WebElement birthDateField;
 
-    @FindBy(how = How.XPATH, using = "//input[@id='birthDate']/following-sibling::span")
+    @FindBy(how = How.XPATH, using = "//input[@id='birthDate']/..//following-sibling::span[last()]")
     private WebElement birthDateFieldError;
-
 
     @FindBy(how = How.ID, using = "type")
     private WebElement typeDropdown;
 
-    @FindBy(how = How.CSS, using = "span.help-inline")
-    private WebElement errorMessage;
+    @FindBy(how = How.XPATH, using = "//button[@class='btn btn-default']")
+    private WebElement addPetButton;
 
     public AddPetPage(WebDriver driver) {
         super(driver);
@@ -56,11 +51,6 @@ public class AddPetPage extends BasePage {
         click(birthDateField);
     }
 
-    public void enterDate(String date) {
-        LOGGER.info("Entering date:" + date);
-
-    }
-
     public void clickAddPetButton() {
         LOGGER.info("Clicking Add Pet button");
         click(addPetButton);
@@ -71,12 +61,12 @@ public class AddPetPage extends BasePage {
      * Adds new pet for specific owner
      *
      * @param name name
-     * @param date  date in format day/month/year
+     * @param day  date in format YYYY-MM-DD
      * @param type animal type
      */
-    public void addNewPet(String name, String date, Type type) {
+    public void addNewPet(String name, String day, Type type) {
         enterName(name);
-        enterDate(date);
+        enterBirthDate(day);
         selectType(type);
         clickAddPetButton();
     }
@@ -86,13 +76,6 @@ public class AddPetPage extends BasePage {
         LOGGER.info("Verifying name error:" + expectedText);
         Assertions.assertEquals(expectedText, getText(nameFieldError), "Error text is not as expected");
     }
-
-    public void verifyErrorDisplayed() {
-        LOGGER.info("Verifying error is displayed");
-        Assertions.assertTrue(errorMessage.isDisplayed());
-    }
-
-
 
     public void verifyBirthDateError(String expectedText) {
         LOGGER.info("Verifying birth date error:" + expectedText);

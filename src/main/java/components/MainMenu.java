@@ -1,5 +1,6 @@
 package components;
 
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,7 +13,10 @@ import pages.BasePage;
 public class MainMenu extends BasePage {
     private static final Logger LOGGER = LoggerFactory.getLogger(MainMenu.class);
 
-    @FindBy(how = How.XPATH, using = "//a[@title='home']")
+    @FindBy(how = How.XPATH, using = "//a[@class='navbar-brand']")
+    private WebElement homeLogoLink;
+
+    @FindBy(how = How.XPATH, using = "//a[@title='home page']")
     private WebElement homePageLink;
 
     @FindBy(how = How.XPATH, using = "//a[@title='find owners']")
@@ -24,10 +28,31 @@ public class MainMenu extends BasePage {
     @FindBy(how = How.XPATH, using = "//a[@title='trigger a RuntimeException to see how it is handled']")
     private WebElement errorLink;
 
+    @FindBy(how = How.XPATH, using = "//div[@class='col-12 text-center']/img")
+    private WebElement footerImage;
+
 
     public MainMenu(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+    }
+
+    /**
+     * Clicks on Home link
+     */
+    public void clickLogoLink() {
+        LOGGER.info("Clicking on Logo link main menu");
+        click(homeLogoLink);
+        waitForFullPageOrJsAjaxToLoad();
+    }
+
+    /**
+     * Clicks on Home link
+     */
+    public void clickHomeLink() {
+        LOGGER.info("Clicking on Home page link main menu");
+        click(homePageLink);
+        waitForFullPageOrJsAjaxToLoad();
     }
 
     /**
@@ -49,15 +74,6 @@ public class MainMenu extends BasePage {
     }
 
     /**
-     * Clicks on Home link
-     */
-    public void clickHomeLink() {
-        LOGGER.info("Clicking on Home page link main menu");
-        click(homePageLink);
-        waitForFullPageOrJsAjaxToLoad();
-    }
-
-    /**
      * Clicks on Error link from main menu
      */
     public void clickErrorLink() {
@@ -66,5 +82,16 @@ public class MainMenu extends BasePage {
         waitForFullPageOrJsAjaxToLoad();
     }
 
+    /**
+     * Verifies Footer image content is displayed
+     */
+    public void verifyImagePresent() {
+        LOGGER.info("Verifying image is present.");
+        Assertions.assertTrue(footerImage.isDisplayed(), "Image is not displayed");
+    }
+
+    // add highlight checking of menu buttons + logo
+    // add check for fav icon
+    // add check for browser tab title
 
 }

@@ -46,7 +46,7 @@ public class BasePage {
      * @param expectedText page header text
      */
     public void verifyHeaderText(String expectedText) {
-        LOGGER.info("Verifying h2 text is:" + expectedText);
+        LOGGER.info("Verifying h2 text is: " + expectedText);
         Assertions.assertEquals(expectedText, getText(headerText), "Header text is not as expected");
     }
 

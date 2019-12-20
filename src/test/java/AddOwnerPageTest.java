@@ -129,11 +129,7 @@ public class AddOwnerPageTest extends BaseTest {
         webApp.addOwnerPage().enterCity("*![]<yooohoho>{}123/\\\n");
         webApp.addOwnerPage().enterTelephone("0000");
         webApp.addOwnerPage().clickAddOwnerButton();
-        webApp.addOwnerPage().verifyFirstNameWithMixedCharsError("Error text invalid data please enter string text for First Name field!!!");
-        webApp.addOwnerPage().verifyLastNameWithMixedCharsError("Error text invalid data please enter string text for Last Name field!!!");
-        webApp.addOwnerPage().verifyAddressWithMixedCharsError("Error text invalid data please enter string text and numbers for Address field!!!");
-        webApp.addOwnerPage().verifyCityNameWithMixedCharsError("Error text invalid data please enter string text for City field!!!");
-        webApp.addOwnerPage().verifyTelephoneSeveralNumbersError("Error in invalid size number enter 10 digits field!!!");
+        webApp.addOwnerPage().verifyTelephoneError("Error in invalid size number enter 10 digits field!!!");
     }
 
     @Test
