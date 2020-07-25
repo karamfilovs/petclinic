@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -68,6 +69,14 @@ public class OwnerInformationPage extends BasePage {
     public void verifySecondHeaderText(String expectedText) {
         LOGGER.info("Verifying second h2 text is:" + expectedText);
         Assertions.assertEquals(expectedText, getText(secondHeader), "Header text is not as expected");
+    }
+
+    /**
+     * This method checks if the new visit has been added
+     */
+    public void verifyAddedNewVisit() {
+        WebElement newvisit = driver.findElement(By.cssSelector("table.table:nth-of-type(2) table.table-condensed td"));
+        Assertions.assertTrue(newvisit.isDisplayed());
     }
 
 

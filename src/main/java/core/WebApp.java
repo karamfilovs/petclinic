@@ -38,6 +38,7 @@ public class WebApp {
     private OwnerInformationPage ownerInformationPage;
     private AddPetPage addPetPage;
     private ErrorPage errorPage;
+    private VisitPage visitPage;
     private EditPetPage editPetPage;
 
 
@@ -84,7 +85,7 @@ public class WebApp {
     }
 
     public void quit() {
-        driver.quit();
+       driver.quit();
     }
 
 
@@ -158,6 +159,15 @@ public class WebApp {
             return veterinariansPage;
         } else {
             return veterinariansPage;
+        }
+    }
+
+    public VisitPage visitPage(){
+        if (visitPage == null) {
+            visitPage = new VisitPage(driver);
+            return visitPage;
+        } else {
+            return visitPage;
         }
     }
 
