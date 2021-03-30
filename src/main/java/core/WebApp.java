@@ -22,11 +22,6 @@ public class WebApp {
     private static final Logger LOGGER = LoggerFactory.getLogger(WebApp.class);
     private WebDriver driver;
 
-    //Drivers paths
-    private final String WINDOWS_CHROME_DRIVER_PATH = "src\\test\\resources\\chromedriver.exe";
-    private final String WINDOWS_FIREFOX_DRIVER_PATH = "src\\test\\resources\\geckodriver.exe";
-    private final String LINUX_CHROME_DRIVER_PATH = "src/test/resources/linux-chromedriver-v2.42";
-    private final String LINUX_FIREFOX_DRIVER_PATH = "src/test/resources/linux-geckodriver-v0.22.0";
 
     //pages
     private HomePage homePage;
@@ -44,13 +39,11 @@ public class WebApp {
     public void startBrowser(String browser) {
         if (SystemUtils.IS_OS_LINUX) {
             if (browser.equalsIgnoreCase("chrome")) {
-                System.setProperty("webdriver.chrome.driver", LINUX_CHROME_DRIVER_PATH);
                 ChromeOptions options = new ChromeOptions();
                 options.setHeadless(isHeadless());
                 options.addArguments("--window-size=1920,1080");
                 driver = new ChromeDriver(options);
             } else if (browser.equalsIgnoreCase("firefox")) {
-                System.setProperty("webdriver.gecko.driver", LINUX_FIREFOX_DRIVER_PATH);
                 FirefoxOptions options = new FirefoxOptions();
                 options.addArguments("-width=1920");
                 options.addArguments("-height=1080");
@@ -61,11 +54,9 @@ public class WebApp {
             }
         } else {
             if (browser.equalsIgnoreCase("chrome")) {
-                System.setProperty("webdriver.chrome.driver", WINDOWS_CHROME_DRIVER_PATH);
                 driver = new ChromeDriver();
                 driver.manage().window().maximize();
             } else if (browser.equalsIgnoreCase("firefox")) {
-                System.setProperty("webdriver.gecko.driver", WINDOWS_FIREFOX_DRIVER_PATH);
                 driver = new FirefoxDriver();
                 driver.manage().window().maximize();
             } else {
@@ -73,7 +64,6 @@ public class WebApp {
             }
 
 
-            LOGGER.info("******************************************************************");
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             driver.manage().deleteAllCookies();
         }
