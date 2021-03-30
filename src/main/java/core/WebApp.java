@@ -2,14 +2,12 @@ package core;
 
 import components.Components;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.SystemUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pages.*;
@@ -37,22 +35,6 @@ public class WebApp {
 
 
     public void startBrowser(String browser) {
-        if (SystemUtils.IS_OS_LINUX) {
-            if (browser.equalsIgnoreCase("chrome")) {
-                ChromeOptions options = new ChromeOptions();
-                options.setHeadless(isHeadless());
-                options.addArguments("--window-size=1920,1080");
-                driver = new ChromeDriver(options);
-            } else if (browser.equalsIgnoreCase("firefox")) {
-                FirefoxOptions options = new FirefoxOptions();
-                options.addArguments("-width=1920");
-                options.addArguments("-height=1080");
-                options.setHeadless(isHeadless());
-                driver = new FirefoxDriver(options);
-            } else {
-                throw new RuntimeException("Not supported browser");
-            }
-        } else {
             if (browser.equalsIgnoreCase("chrome")) {
                 ChromeOptions options = new ChromeOptions();
                 options.setHeadless(isHeadless());
@@ -64,11 +46,10 @@ public class WebApp {
             } else {
                 throw new RuntimeException("Not supported browser");
             }
-
-
+            
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             driver.manage().deleteAllCookies();
-        }
+
     }
 
     private boolean isHeadless() {
