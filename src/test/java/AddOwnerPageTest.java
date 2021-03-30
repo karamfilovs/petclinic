@@ -22,6 +22,7 @@ public class AddOwnerPageTest extends BaseTest {
 
 
     @Test
+    @Tag("alex")
     @DisplayName("PC-02: Can add owner with valid data")
     public void canAddOwnerWithValidData() {
         webApp.components().mainMenu().clickFindOwnersLink();

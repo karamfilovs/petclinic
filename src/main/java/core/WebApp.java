@@ -54,7 +54,9 @@ public class WebApp {
             }
         } else {
             if (browser.equalsIgnoreCase("chrome")) {
-                driver = new ChromeDriver();
+                ChromeOptions options = new ChromeOptions();
+                options.setHeadless(isHeadless());
+                driver = new ChromeDriver(options);
                 driver.manage().window().maximize();
             } else if (browser.equalsIgnoreCase("firefox")) {
                 driver = new FirefoxDriver();
@@ -70,7 +72,7 @@ public class WebApp {
     }
 
     private boolean isHeadless() {
-        return System.getProperty("headless").equalsIgnoreCase("on") ? true : false;
+        return System.getProperty("headless").equalsIgnoreCase("true") ? true : false;
     }
 
     public void quit() {
