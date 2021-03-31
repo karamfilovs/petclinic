@@ -89,7 +89,7 @@ public class OwnerInformationPage extends BasePage {
 
 
     public void clickEditPet() {
-        LOGGER.info("Open the pet edid page");
+        LOGGER.info("Open the pet edit page");
         click(editPetButton);
     }
 }

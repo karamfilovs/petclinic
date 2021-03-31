@@ -99,7 +99,7 @@
                     <systemPropertyVariables>
                         <browser>chrome</browser>
                         <headless>true</headless>
-                        <url>http://localhost:9191</url>
+                        <url>http://localhost:8080</url>
                         <take.screenshots.enabled>false</take.screenshots.enabled>
                     </systemPropertyVariables>
                     <properties>

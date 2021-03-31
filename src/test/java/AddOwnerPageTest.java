@@ -22,7 +22,6 @@ public class AddOwnerPageTest extends BaseTest {
 
 
     @Test
-    @Tag("alex")
     @DisplayName("PC-02: Can add owner with valid data")
     public void canAddOwnerWithValidData() {
         webApp.components().mainMenu().clickFindOwnersLink();
@@ -46,7 +45,7 @@ public class AddOwnerPageTest extends BaseTest {
         webApp.addOwnerPage().enterCity("Sofia");
         webApp.addOwnerPage().enterTelephone("088888888");
         webApp.addOwnerPage().clickAddOwnerButton();
-        webApp.addOwnerPage().verifyFirstNameError("may not be empty");
+        webApp.addOwnerPage().verifyFirstNameError("must not be empty");
     }
 
     @Test
@@ -59,7 +58,7 @@ public class AddOwnerPageTest extends BaseTest {
         webApp.addOwnerPage().enterCity("Sofia");
         webApp.addOwnerPage().enterTelephone("088888888");
         webApp.addOwnerPage().clickAddOwnerButton();
-        webApp.addOwnerPage().verifyLastNameError("may not be empty");
+        webApp.addOwnerPage().verifyLastNameError("must not be empty");
     }
 
     @Test
@@ -72,7 +71,10 @@ public class AddOwnerPageTest extends BaseTest {
         webApp.addOwnerPage().enterAddress("Student city");
         webApp.addOwnerPage().enterCity("Sofia");
         webApp.addOwnerPage().clickAddOwnerButton();
-        webApp.addOwnerPage().verifyTelephoneError("may not be empty");
+        // works in Intellij run
+        webApp.addOwnerPage().verifyTelephoneError("numeric value out of bounds (<10 digits>.<0 digits> expected)\nmust not be empty");
+        // works in Terminal run
+//        webApp.addOwnerPage().verifyTelephoneError("must not be empty\nnumeric value out of bounds (<10 digits>.<0 digits> expected)");
     }
 
     @Test
@@ -83,9 +85,12 @@ public class AddOwnerPageTest extends BaseTest {
         webApp.addOwnerPage().enterAddress("Student city");
         webApp.addOwnerPage().enterCity("Sofia");
         webApp.addOwnerPage().clickAddOwnerButton();
-        webApp.addOwnerPage().verifyFirstNameError("may not be empty");
-        webApp.addOwnerPage().verifyLastNameError("may not be empty");
-        webApp.addOwnerPage().verifyTelephoneError("numeric value out of bounds (<10 digits>.<0 digits> expected)");
+        webApp.addOwnerPage().verifyFirstNameError("must not be empty");
+        webApp.addOwnerPage().verifyLastNameError("must not be empty");
+        // works in Intellij run
+//        webApp.addOwnerPage().verifyTelephoneError("must not be empty\nnumeric value out of bounds (<10 digits>.<0 digits> expected)");
+        // works in Terminal run
+        webApp.addOwnerPage().verifyTelephoneError("numeric value out of bounds (<10 digits>.<0 digits> expected)\nmust not be empty");
     }
 
     @Test
@@ -115,11 +120,12 @@ public class AddOwnerPageTest extends BaseTest {
         webApp.addOwnerPage().clickAddOwnerButton();
         webApp.ownerInformationPage().verifyHeaderText("Owner Information");
         webApp.ownerInformationPage().clickAddPetButton();
-        webApp.addPetPage().addNewPet("Sarah", "10", Type.DOG);
+        webApp.addPetPage().addNewPet("Sarah", "2010-12-12", Type.DOG);
         webApp.ownerInformationPage().verifySecondHeaderText("Pets and Visits");
     }
 
     @Test
+    @Tag("bug") //bug - no error message is shown, should be fixed
     @DisplayName("PC-24: Cant add owner with special characters and numbers mixed in all fields without telephone")
     public void canAddOwnerWithSpecialCharactersAndNumbersMixedInAllFieldsWithoutTelephone() {
         webApp.components().mainMenu().clickFindOwnersLink();
@@ -146,10 +152,11 @@ public class AddOwnerPageTest extends BaseTest {
         webApp.addOwnerPage().clickAddOwnerButton();
         webApp.ownerInformationPage().verifyHeaderText("Owner Information");
         webApp.ownerInformationPage().clickAddPetButton();
-        webApp.addPetPage().addNewPet("Dr@gonF#y99", "3", Type.LIZARD);
+        webApp.addPetPage().addNewPet("Dr@gonF#y99", "2000-12-13", Type.LIZARD);
         webApp.ownerInformationPage().verifySecondHeaderText("Pets and Visits");
     }
     @Test
+    @Tag("bug") //but - no error messages shown, should be fixed
     @Tag("negative")
     @DisplayName("PC-26 Cannot add owner with space white space")
 /*
@@ -166,9 +173,9 @@ when the Add user button is clicked and the proper error message has to be displ
         webApp.addOwnerPage().enterCity(" ");
         webApp.addOwnerPage().enterTelephone("088888888");
         webApp.addOwnerPage().clickAddOwnerButton();
-        webApp.addOwnerPage().verifyFirstNameError("may not be empty");
-        webApp.addOwnerPage().verifyLastNameError("may not be empty");
-        webApp.addOwnerPage().verifyAddressErrorMessage("may not be empty");
-        webApp.addOwnerPage().verifyCityErrorMessage("may not be empty");
+        webApp.addOwnerPage().verifyFirstNameError("must not be empty");
+        webApp.addOwnerPage().verifyLastNameError("must not be empty");
+        webApp.addOwnerPage().verifyAddressErrorMessage("must not be empty");
+        webApp.addOwnerPage().verifyCityErrorMessage("must not be empty");
     }
 }
