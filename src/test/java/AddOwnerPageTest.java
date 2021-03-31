@@ -156,7 +156,7 @@ public class AddOwnerPageTest extends BaseTest {
         webApp.ownerInformationPage().verifySecondHeaderText("Pets and Visits");
     }
     @Test
-    @Tag("bug") //but - no error messages shown, should be fixed
+    @Tag("bug") //bug - no error messages shown, should be fixed
     @Tag("negative")
     @DisplayName("PC-26 Cannot add owner with space white space")
 /*
