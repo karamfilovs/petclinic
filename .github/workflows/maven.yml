@@ -23,5 +23,7 @@ jobs:
           distribution: 'adopt'
       - uses: browser-actions/setup-chrome@latest
       - run: chrome --version
+        with:
+          chrome-version: beta
       - name: Execute e2e tests on Chrome browser
         run: mvn clean test -Dbrowser=chrome -Dheadless=true --file pom.xml
