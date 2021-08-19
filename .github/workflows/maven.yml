@@ -22,7 +22,6 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - uses: browser-actions/setup-chrome@latest
-      - name: Install latest chrome browser
       - run: chrome --version
       - name: Execute e2e tests on Chrome browser
         run: mvn clean test -Dbrowser=chrome -Dheadless=true --file pom.xml
