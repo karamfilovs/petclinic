@@ -21,7 +21,7 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - uses: browser-actions/setup-chrome@92.0.4515.159
-      - run: chrome --version
+      - uses: browser-actions/setup-firefox@latest
+      - run: firefox --version
       - name: Execute e2e tests on Chrome browser
-        run: mvn clean test -Dbrowser=chrome -Dheadless=true --file pom.xml
+        run: mvn clean test -Dbrowser=firefox -Dheadless=true --file pom.xml
