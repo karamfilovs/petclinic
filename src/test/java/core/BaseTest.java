@@ -22,7 +22,7 @@ public class BaseTest {
 
     @BeforeAll
     public static void beforeAll(){
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.firefoxdriver().setup();
     }
 
     @BeforeEach
